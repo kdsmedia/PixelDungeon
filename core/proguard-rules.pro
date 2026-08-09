@@ -17,6 +17,10 @@
 #}
 
 -dontwarn **
--keep class com.shatteredpixel.** { *; }
+# Keep the actual app package (was previously com.shatteredpixel.**, which did
+# not match this fork's com.egoal.darkestpixeldungeon package). The codebase
+# relies on Class.getName() for message lookups and reflection-based
+# deserialization, so these classes must not be renamed.
+-keep class com.egoal.darkestpixeldungeon.** { *; }
 -keep class com.watabou.** { *; }
 -keepattributes SourceFile,LineNumberTable
