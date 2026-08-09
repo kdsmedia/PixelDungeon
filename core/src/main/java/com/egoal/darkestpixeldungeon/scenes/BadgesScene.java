@@ -73,7 +73,7 @@ public class BadgesScene extends PixelScene {
     float left = (w - size * nCols) / 2;
     float top = (h - size * nRows) / 2;
 
-    RenderedText title = renderText(Messages.get(this, "title"), 9);
+    RenderedText title = renderText(Messages.get(this, "title"), FONT_SIZE_TITLE);
     title.hardlight(Window.TITLE_COLOR);
     title.x = (w - title.width()) / 2;
     title.y = (top - title.baseLine()) / 2;

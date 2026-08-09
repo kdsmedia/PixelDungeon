@@ -36,7 +36,7 @@ public class RedButton extends Button {
   protected Image icon;
 
   public RedButton(String label) {
-    this(label, 9);
+    this(label, PixelScene.FONT_SIZE_BUTTON);
   }
 
   public RedButton(String label, int size) {
@@ -69,7 +69,7 @@ public class RedButton extends Button {
     text.scale.set(1f, 1f);
     float maxTextWidth = Math.max(1f, width - 4f);
     if (text.width() > maxTextWidth && text.width() > 0) {
-      float s = Math.max(0.55f, maxTextWidth / text.width());
+      float s = Math.max(0.5f, maxTextWidth / text.width());
       text.scale.set(s, s);
     }
 

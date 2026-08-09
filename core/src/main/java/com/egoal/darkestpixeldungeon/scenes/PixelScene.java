@@ -44,6 +44,14 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class PixelScene extends Scene {
 
+  // Centralized UI font sizes (in on-screen pixels). Keeping these in one
+  // place makes text sizing consistent across buttons, menus, windows and
+  // dialog bodies, and prevents labels from rendering too large / overflowing.
+  public static final int FONT_SIZE_BODY = 6;
+  public static final int FONT_SIZE_BUTTON = 7;
+  public static final int FONT_SIZE_SMALL = 5;
+  public static final int FONT_SIZE_TITLE = 8;
+
   // Minimum virtual display size for portrait orientation
   public static final float MIN_WIDTH_P = 135;
   public static final float MIN_HEIGHT_P = 225;

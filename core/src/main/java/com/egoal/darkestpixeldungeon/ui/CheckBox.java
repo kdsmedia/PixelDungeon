@@ -45,7 +45,7 @@ public class CheckBox extends RedButton {
     float iconX = x + width - margin - icon.width;
     float maxTextWidth = Math.max(1f, iconX - (x + margin) - 2f);
     if (text.width() > maxTextWidth && text.width() > 0) {
-      float s = Math.max(0.55f, maxTextWidth / text.width());
+      float s = Math.max(0.5f, maxTextWidth / text.width());
       text.scale.set(s, s);
       margin = (height - text.baseLine()) / 2f;
       iconX = x + width - margin - icon.width;

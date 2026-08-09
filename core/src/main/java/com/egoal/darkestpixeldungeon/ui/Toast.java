@@ -59,7 +59,7 @@ public class Toast extends Component {
     };
     add(close);
 
-    text = PixelScene.renderMultiline(8);
+    text = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BUTTON);
     add(text);
   }
 

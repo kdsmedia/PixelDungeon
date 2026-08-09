@@ -206,7 +206,7 @@ public class WndTabbed extends Window {
     protected void createChildren() {
       super.createChildren();
 
-      btLabel = PixelScene.renderText(9);
+      btLabel = PixelScene.renderText(PixelScene.FONT_SIZE_BUTTON);
       add(btLabel);
     }
 

@@ -123,7 +123,7 @@ class StartScene : PixelScene() {
         unlock = Group()
         add(unlock)
         if (!isHuntressUnlocked() || !IsSorceressUnlocked()) {
-            unlockText = renderMultiline(9).apply {
+            unlockText = renderMultiline(FONT_SIZE_TITLE).apply {
                 maxWidth(width.toInt())
                 hardlight(0xffff00)
             }
@@ -337,7 +337,7 @@ class StartScene : PixelScene() {
             emitter = BitmaskEmitter(avatar)
             add(emitter)
 
-            name = renderText(9)
+            name = renderText(FONT_SIZE_TITLE)
             add(name)
         }
 
@@ -376,7 +376,7 @@ class StartScene : PixelScene() {
         override fun createChildren() {
             super.createChildren()
 
-            secondary = renderText(6)
+            secondary = renderText(FONT_SIZE_BODY)
             add(secondary)
         }
 

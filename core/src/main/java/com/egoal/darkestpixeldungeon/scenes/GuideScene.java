@@ -36,7 +36,7 @@ public class GuideScene extends PixelScene {
     int h = Camera.main.height;
 
     // title
-    RenderedText title = renderText(Messages.get(this, "title"), 9);
+    RenderedText title = renderText(Messages.get(this, "title"), FONT_SIZE_TITLE);
     title.hardlight(Window.TITLE_COLOR);
     title.x = (w - title.width()) / 2;
     title.y = 4;

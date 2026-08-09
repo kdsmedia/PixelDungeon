@@ -75,7 +75,7 @@ public class InterlevelScene extends PixelScene {
 
     String text = Messages.get(Mode.class, mode.name());
 
-    message = renderText(text, 9);
+    message = renderText(text, FONT_SIZE_TITLE);
     message.x = (Camera.main.width - message.width()) / 2;
     message.y = (Camera.main.height - message.height()) / 2;
     align(message);

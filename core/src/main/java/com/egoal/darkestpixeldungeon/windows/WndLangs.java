@@ -127,13 +127,13 @@ public class WndLangs extends Window {
 
     if (currLang == Languages.CHINESE) {
 
-      RenderedTextMultiline info = PixelScene.renderMultiline(6);
+      RenderedTextMultiline info = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY);
       info.text(Messages.get(this, "do_not_change"), width - textLeft);
       info.setPos(textLeft, title.height() + 2);
       add(info);
 
     } else {
-      RenderedTextMultiline info = PixelScene.renderMultiline(6);
+      RenderedTextMultiline info = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY);
       switch (currLang.status()) {
         case REVIEWED:
           info.text(Messages.get(this, "completed"), width - textLeft);
@@ -179,14 +179,14 @@ public class WndLangs extends Window {
 
           Window credits = new Window();
 
-          RenderedTextMultiline title = PixelScene.renderMultiline(9);
+          RenderedTextMultiline title = PixelScene.renderMultiline(PixelScene.FONT_SIZE_TITLE);
           title.text(Messages.titleCase(Messages.get(WndLangs.class,
                   "credits")), 65);
           title.hardlight(SHPX_COLOR);
           title.setPos((65 - title.width()) / 2, 0);
           credits.add(title);
 
-          RenderedTextMultiline text = PixelScene.renderMultiline(6);
+          RenderedTextMultiline text = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY);
           text.text(creds, 65);
           text.setPos(0, title.bottom() + 2);
           credits.add(text);
@@ -200,7 +200,7 @@ public class WndLangs extends Window {
               18);
       add(creditsBtn);
 
-      RenderedTextMultiline transifex_text = PixelScene.renderMultiline(6);
+      RenderedTextMultiline transifex_text = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY);
       transifex_text.text(Messages.get(this, "transifex"), width - textLeft);
       transifex_text.setPos(textLeft, creditsBtn.top() - 2 - transifex_text
               .height());

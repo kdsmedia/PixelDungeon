@@ -95,9 +95,9 @@ public abstract class OptionSlider extends Component {
     add(BG = Chrome.get(Chrome.Type.BUTTON));
     BG.alpha(0.5f);
 
-    add(title = PixelScene.renderText(9));
-    add(this.minTxt = PixelScene.renderText(6));
-    add(this.maxTxt = PixelScene.renderText(6));
+    add(title = PixelScene.renderText(PixelScene.FONT_SIZE_TITLE));
+    add(this.minTxt = PixelScene.renderText(PixelScene.FONT_SIZE_SMALL));
+    add(this.maxTxt = PixelScene.renderText(PixelScene.FONT_SIZE_SMALL));
 
     add(sliderBG = new ColorBlock(1, 1, 0xFF222222));
     sliderNode = Chrome.get(Chrome.Type.BUTTON);

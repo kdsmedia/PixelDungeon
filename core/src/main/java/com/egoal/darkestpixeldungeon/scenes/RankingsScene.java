@@ -72,7 +72,7 @@ public class RankingsScene extends PixelScene {
 
     Rankings.INSTANCE.load();
 
-    RenderedText title = renderText(Messages.get(this, "title"), 9);
+    RenderedText title = renderText(Messages.get(this, "title"), FONT_SIZE_TITLE);
     title.hardlight(Window.SHPX_COLOR);
     title.x = (w - title.width()) / 2;
     title.y = GAP;

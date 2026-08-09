@@ -17,7 +17,7 @@ class ErrorReportScene : PixelScene() {
         val w = Camera.main.width
         val h = Camera.main.height
 
-        val title = renderText(M.L(this, "title"), 9)
+        val title = renderText(M.L(this, "title"), FONT_SIZE_TITLE)
         title.hardlight(Window.TITLE_COLOR)
         title.x = (w - title.width()) / 2
         title.y = 4f

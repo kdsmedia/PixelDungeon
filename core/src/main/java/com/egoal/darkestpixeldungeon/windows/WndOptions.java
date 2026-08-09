@@ -40,7 +40,7 @@ public class WndOptions extends Window {
 
     int width = DarkestPixelDungeon.landscape() ? WIDTH_L : WIDTH_P;
 
-    RenderedTextMultiline tfTitle = PixelScene.renderMultiline(title, 9);
+    RenderedTextMultiline tfTitle = PixelScene.renderMultiline(title, PixelScene.FONT_SIZE_TITLE);
     tfTitle.hardlight(TITLE_COLOR);
     tfTitle.setPos(MARGIN, MARGIN);
     tfTitle.maxWidth(width - MARGIN * 2);
@@ -79,7 +79,7 @@ public class WndOptions extends Window {
   }
 
   private float addMessage(float pos, int width, String message) {
-    RenderedTextMultiline rtm = PixelScene.renderMultiline(6);
+    RenderedTextMultiline rtm = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY);
     rtm.text(message, width - MARGIN * 2);
     rtm.setPos(MARGIN, pos);
     add(rtm);
