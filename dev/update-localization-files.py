@@ -1,7 +1,7 @@
 import sys, os 
 import shutil
 
-MASSAGES = "core/src/main/resources/com/egoal/darkestpixeldungeon/messages/"
+MASSAGES = "core/src/main/resources/com/altomedia/pixeldungeon/messages/"
 LOCALIZATIONS = "dev/messages/"
 
 def copy_source_out():

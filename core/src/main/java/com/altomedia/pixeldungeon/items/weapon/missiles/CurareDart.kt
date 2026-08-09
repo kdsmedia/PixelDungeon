@@ -1,0 +1,54 @@
+/*
+ * Pixel Dungeon
+ * Copyright (C) 2012-2015  Oleg Dolya
+ *
+ * Shattered Pixel Dungeon
+ * Copyright (C) 2014-2016 Evan Debenham
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
+package com.altomedia.pixeldungeon.items.weapon.missiles
+
+import com.altomedia.pixeldungeon.actors.Char
+import com.altomedia.pixeldungeon.actors.Damage
+import com.altomedia.pixeldungeon.actors.buffs.Buff
+import com.altomedia.pixeldungeon.actors.buffs.Paralysis
+import com.altomedia.pixeldungeon.items.Item
+import com.altomedia.pixeldungeon.sprites.ItemSpriteSheet
+import com.watabou.utils.Random
+
+class CurareDart(number: Int = 1) : MissileWeapon(2, stick = true) {
+
+    init {
+        image = ItemSpriteSheet.CURARE_DART
+
+        quantity = number
+    }
+
+    override fun proc(dmg: Damage): Damage {
+        Buff.prolong(dmg.to as Char, Paralysis::class.java, DURATION)
+        return super.proc(dmg)
+    }
+
+    override fun breakChance(): Float = 1f
+
+    override fun random(): Item {
+        quantity = Random.Int(2, 5)
+        return this
+    }
+
+    companion object {
+        private const val DURATION = 3f
+    }
+}

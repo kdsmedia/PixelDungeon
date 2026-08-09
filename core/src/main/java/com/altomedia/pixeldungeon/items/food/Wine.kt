@@ -1,0 +1,85 @@
+package com.altomedia.pixeldungeon.items.food
+
+import com.altomedia.pixeldungeon.Assets
+import com.altomedia.pixeldungeon.actors.Damage
+import com.altomedia.pixeldungeon.actors.buffs.Buff
+import com.altomedia.pixeldungeon.actors.buffs.Drunk
+import com.altomedia.pixeldungeon.actors.hero.Hero
+import com.altomedia.pixeldungeon.actors.hero.HeroLines
+import com.altomedia.pixeldungeon.actors.hero.perks.Drunkard
+import com.altomedia.pixeldungeon.items.Item
+import com.altomedia.pixeldungeon.messages.M
+import com.altomedia.pixeldungeon.messages.Messages
+import com.altomedia.pixeldungeon.sprites.CharSprite
+import com.altomedia.pixeldungeon.sprites.ItemSpriteSheet
+import com.altomedia.pixeldungeon.utils.GLog
+import com.watabou.noosa.audio.Sample
+import com.watabou.utils.Random
+
+import java.util.ArrayList
+import kotlin.math.min
+
+/**
+ * Created by 93942 on 5/31/2018.
+ */
+
+private const val AC_DRINK = "drink"
+private const val TIME_TO_DRINK = 2f
+
+open class Wine : Item() {
+    init {
+        image = ItemSpriteSheet.DPD_WINE
+        defaultAction = AC_DRINK
+        stackable = true
+
+        identify()
+    }
+
+    override fun actions(hero: Hero): ArrayList<String> = super.actions(hero).apply {
+        add(AC_DRINK)
+    }
+
+    override fun execute(hero: Hero, action: String) {
+        super.execute(hero, action)
+
+        if (action === AC_DRINK) {
+            detach(hero.belongings.backpack)
+            hero.spend(TIME_TO_DRINK)
+            hero.busy()
+
+            var value = recoverValue(hero)
+            if (hero.heroPerk.get(Drunkard::class.java) != null) {
+                value += value / 4
+                hero.recoverSanity(value)
+
+                if(this is BrownAle)
+                    hero.sayShort(HeroLines.AWFUL)
+            } else {
+                hero.recoverSanity(value)
+                // get drunk
+                Buff.prolong(hero, Drunk::class.java, Drunk.duration(hero))
+                // hero.takeDamage(Damage(hero.HP / 4, this, hero).type(Damage.Type.MAGICAL).addFeature(Damage.Feature.PURE))
+            }
+
+            hero.sprite.operate(hero.pos)
+            GLog.i(Messages.get(this, "drunk"))
+            Sample.INSTANCE.play(Assets.SND_DRINK)
+        }
+    }
+
+    protected open fun recoverValue(hero: Hero): Float = min(Random.Float(15f, hero.pressure.pressure * 0.4f), 30f)
+
+    override fun price(): Int = 20 * quantity()
+
+    override fun isUpgradable(): Boolean = false
+}
+
+class BrownAle : Wine() {
+    init {
+        image = ItemSpriteSheet.BROWN_ALE
+    }
+
+    override fun recoverValue(hero: Hero): Float = min(Random.Float(10f, hero.pressure.pressure* 0.3f), 22.5f)
+
+    override fun price(): Int = 15 * quantity()
+}

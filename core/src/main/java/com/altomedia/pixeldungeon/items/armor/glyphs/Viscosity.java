@@ -1,0 +1,156 @@
+/*
+ * Pixel Dungeon
+ * Copyright (C) 2012-2015  Oleg Dolya
+ *
+ * Shattered Pixel Dungeon
+ * Copyright (C) 2014-2016 Evan Debenham
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
+package com.altomedia.pixeldungeon.items.armor.glyphs;
+
+import com.altomedia.pixeldungeon.Badges;
+import com.altomedia.pixeldungeon.Dungeon;
+import com.altomedia.pixeldungeon.actors.Actor;
+import com.altomedia.pixeldungeon.actors.Char;
+import com.altomedia.pixeldungeon.actors.Damage;
+import com.altomedia.pixeldungeon.actors.buffs.Buff;
+import com.altomedia.pixeldungeon.items.armor.Armor;
+import com.altomedia.pixeldungeon.messages.Messages;
+import com.altomedia.pixeldungeon.sprites.CharSprite;
+import com.altomedia.pixeldungeon.sprites.ItemSprite;
+import com.altomedia.pixeldungeon.ui.BuffIndicator;
+import com.altomedia.pixeldungeon.utils.GLog;
+import com.watabou.utils.Bundle;
+import com.watabou.utils.Random;
+
+public class Viscosity extends Armor.Glyph {
+
+  private static ItemSprite.Glowing PURPLE = new ItemSprite.Glowing(0x8844CC);
+
+  @Override
+  public Damage proc(Armor armor, Damage damage) {
+    Char attacker = (Char) damage.from;
+    Char defender = (Char) damage.to;
+
+    if (damage.value <= 0) {
+      damage.value = 0;
+      return damage;
+    }
+
+    int level = Math.max(0, armor.level());
+
+    if (Random.Int(level + 4) >= 3) {
+
+      DeferedDamage debuff = defender.buff(DeferedDamage.class);
+      if (debuff == null) {
+        debuff = new DeferedDamage();
+        debuff.attachTo(defender);
+      }
+      debuff.prolong(damage.value);
+
+      defender.sprite.showStatus(CharSprite.WARNING, Messages.get(this,
+              "deferred", damage.value));
+
+      damage.value = 0;
+      return damage;
+
+    } else {
+      return damage;
+    }
+  }
+
+  @Override
+  public ItemSprite.Glowing glowing() {
+    return PURPLE;
+  }
+
+  public static class DeferedDamage extends Buff {
+
+    protected int damage = 0;
+
+    private static final String DAMAGE = "damage";
+
+    @Override
+    public void storeInBundle(Bundle bundle) {
+      super.storeInBundle(bundle);
+      bundle.put(DAMAGE, damage);
+
+    }
+
+    @Override
+    public void restoreFromBundle(Bundle bundle) {
+      super.restoreFromBundle(bundle);
+      damage = bundle.getInt(DAMAGE);
+    }
+
+    @Override
+    public boolean attachTo(Char target) {
+      if (super.attachTo(target)) {
+        postpone(Actor.TICK);
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    public void prolong(int damage) {
+      this.damage += damage;
+    }
+
+    @Override
+    public int icon() {
+      return BuffIndicator.DEFERRED;
+    }
+
+    @Override
+    public String toString() {
+      return Messages.get(this, "name");
+    }
+
+    @Override
+    public boolean act() {
+      if (target.isAlive()) {
+
+        int damageThisTick = Math.max(1, damage / 10);
+        target.takeDamage(new Damage(damageThisTick, this, target));
+        if (target == Dungeon.hero && !target.isAlive()) {
+
+          Dungeon.fail(getClass());
+          GLog.n(Messages.get(this, "ondeath"));
+
+          Badges.validateDeathFromGlyph();
+        }
+        spend(Actor.TICK);
+
+        damage -= damageThisTick;
+        if (damage <= 0) {
+          detach();
+        }
+
+      } else {
+
+        detach();
+
+      }
+
+      return true;
+    }
+
+    @Override
+    public String desc() {
+      return Messages.get(this, "desc", damage);
+    }
+  }
+}

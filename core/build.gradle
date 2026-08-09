@@ -9,7 +9,7 @@ def keyAliasName = project.hasProperty("PIXEL_KEY_ALIAS") ? project.PIXEL_KEY_AL
 def keyPasswordVal = project.hasProperty("PIXEL_KEY_PASS") ? project.PIXEL_KEY_PASS : "Kdsmedia@123"
 
 android {
-    namespace "com.egoal.darkestpixeldungeon"
+    namespace "com.altomedia.pixeldungeon"
     compileSdk 35
 
     defaultConfig {
@@ -42,7 +42,7 @@ android {
             // FQNs at runtime (e.g. Messages.get uses Class.getName() to look
             // up localized strings, and Bundle resolves classes by name).
             // The previous keep rules only covered com.shatteredpixel.**,
-            // which does not match this app's com.egoal.darkestpixeldungeon
+            // which does not match this app's com.altomedia.pixeldungeon
             // package, so obfuscation broke runtime class-name lookups and
             // shrinkResources stripped dynamically-referenced resources,
             // causing an immediate crash on launch on all devices.

@@ -1,0 +1,120 @@
+package com.altomedia.pixeldungeon.actors.mobs
+
+import com.altomedia.pixeldungeon.Assets
+import com.altomedia.pixeldungeon.Dungeon
+import com.altomedia.pixeldungeon.actors.Actor
+import com.altomedia.pixeldungeon.actors.Char
+import com.altomedia.pixeldungeon.actors.Damage
+import com.altomedia.pixeldungeon.actors.blobs.Blob
+import com.altomedia.pixeldungeon.actors.blobs.ToxicGas
+import com.altomedia.pixeldungeon.actors.buffs.Buff
+import com.altomedia.pixeldungeon.actors.buffs.Light
+import com.altomedia.pixeldungeon.actors.buffs.Poison
+import com.altomedia.pixeldungeon.messages.M
+import com.altomedia.pixeldungeon.scenes.GameScene
+import com.altomedia.pixeldungeon.sprites.MobSprite
+import com.altomedia.pixeldungeon.utils.GLog
+import com.watabou.noosa.TextureFilm
+import com.watabou.utils.Bundle
+import com.watabou.utils.PathFinder
+import com.watabou.utils.Random
+import java.util.HashSet
+
+class Glowworm(private var level: Int = 1) : Mob() {
+    init {
+        spriteClass = Sprite::class.java
+
+        flying = true
+
+        addResistances(Damage.Element.FIRE, 0.2f)
+        addResistances(Damage.Element.POISON, 0.5f)
+        addResistances(Damage.Element.ICE, -0.2f)
+
+        setLevel(level)
+        Buff.affect(this, Light::class.java).prolong(Float.MAX_VALUE) // for a whole light...
+    }
+
+    fun setLevel(lvl: Int) {
+        level = lvl
+
+        HT = 5 * level
+        HP = HT
+        EXP = level / 3 + 1
+        maxLvl = level + 2
+
+        defSkill = 3f + level
+        atkSkill = 10f+ level
+    }
+
+    override fun giveDamage(enemy: Char): Damage =
+            Damage(Random.NormalIntRange(1 + level / 2, 2 + level), this, enemy).addElement(Damage.Element.POISON)
+
+    override fun defendDamage(dmg: Damage): Damage = dmg.apply {
+        value -= Random.NormalIntRange(1, level)
+    }
+
+    override fun die(cause: Any?) {
+        super.die(cause)
+
+        // poison & light nearby
+        GameScene.add(Blob.seed(pos, 30, ToxicGas::class.java))
+
+        for (i in PathFinder.NEIGHBOURS8) {
+            Actor.findChar(pos + i)?.let { ch ->
+                if (ch.isAlive) {
+                    Buff.affect(ch, Light::class.java).prolong(20f)
+                    if (ch === Dungeon.hero) {
+                        GLog.w(M.L(Glowworm::class.java, "light"))
+                        Buff.affect(ch, Poison::class.java).set(
+                                (Random.Float(1f, 3f) + level / 2f) * Poison.durationFactor(ch))
+                    }
+                }
+            }
+        }
+    }
+
+    override fun storeInBundle(bundle: Bundle) {
+        super.storeInBundle(bundle)
+        bundle.put(STR_LEVEL, level)
+    }
+
+    override fun restoreFromBundle(bundle: Bundle) {
+        super.restoreFromBundle(bundle)
+        val hp = HP
+        level = bundle.getInt(STR_LEVEL)
+        setLevel(level)
+        HP = hp
+    }
+
+    //fixme: bad design, to avoid duplicate lights
+    override fun immunizedBuffs(): HashSet<Class<*>> {
+        return if (buff(Light::class.java) != null) hashSetOf(Light::class.java) else hashSetOf()
+    }
+
+    class Sprite : MobSprite() {
+        init {
+            texture(Assets.GLOWWORM)
+
+            val frames = TextureFilm(texture, 16, 16)
+
+            idle = Animation(5, true)
+            idle.frames(frames, 0, 1)
+
+            run = idle.clone()
+
+            attack = Animation(15, false)
+            attack.frames(frames, 2, 3, 4)
+
+            die = Animation(9, false)
+            die.frames(frames, 5, 6, 7)
+
+            play(idle)
+        }
+
+        override fun blood(): Int = 0xFF8BA077.toInt()
+    }
+
+    companion object {
+        private const val STR_LEVEL = "level"
+    }
+}

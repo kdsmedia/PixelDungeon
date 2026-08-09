@@ -1,0 +1,166 @@
+/*
+ * Pixel Dungeon
+ * Copyright (C) 2012-2015  Oleg Dolya
+ *
+ * Shattered Pixel Dungeon
+ * Copyright (C) 2014-2016 Evan Debenham
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
+package com.altomedia.pixeldungeon.items.wands;
+
+import com.altomedia.pixeldungeon.actors.Char;
+import com.altomedia.pixeldungeon.actors.Damage;
+import com.altomedia.pixeldungeon.effects.CellEmitter;
+import com.altomedia.pixeldungeon.effects.Lightning;
+import com.altomedia.pixeldungeon.items.weapon.enchantments.Shocking;
+import com.altomedia.pixeldungeon.levels.Level;
+import com.altomedia.pixeldungeon.levels.traps.LightningTrap;
+import com.altomedia.pixeldungeon.mechanics.Ballistica;
+import com.altomedia.pixeldungeon.Dungeon;
+import com.altomedia.pixeldungeon.actors.Actor;
+import com.altomedia.pixeldungeon.effects.particles.SparkParticle;
+import com.altomedia.pixeldungeon.items.weapon.melee.MagesStaff;
+import com.altomedia.pixeldungeon.messages.Messages;
+import com.altomedia.pixeldungeon.sprites.ItemSpriteSheet;
+import com.altomedia.pixeldungeon.utils.BArray;
+import com.altomedia.pixeldungeon.utils.GLog;
+import com.watabou.noosa.Camera;
+import com.watabou.utils.Callback;
+import com.watabou.utils.PathFinder;
+import com.watabou.utils.Random;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+
+public class WandOfLightning extends DamageWand {
+
+  {
+    image = ItemSpriteSheet.WAND_LIGHTNING;
+  }
+
+  private ArrayList<Char> affected = new ArrayList<>();
+
+  ArrayList<Lightning.Arc> arcs = new ArrayList<>();
+
+  public int min(int lvl) {
+    return 5 + lvl;
+  }
+
+  public int max(int lvl) {
+    return 8 + 5 * lvl;
+  }
+
+  @NotNull
+  @Override
+  public Damage giveDamage(@NotNull Char enemy) {
+    return super.giveDamage(enemy).addElement(Damage.Element.LIGHT);
+  }
+
+  @Override
+  protected void onZap(Ballistica bolt) {
+
+    //lightning deals less damage per-target, the more targets that are hit.
+    float multipler = 0.4f + (0.6f / affected.size());
+    //if the main target is in water, all affected take full damage
+    if (Level.Companion.getWater()[bolt.collisionPos]) multipler = 1f;
+
+    int min = 5 + level();
+    int max = 10 + 5 * level();
+
+    for (Char ch : affected) {
+      Damage dmg = giveDamage(ch);
+      dmg.value = Math.round(dmg.value* multipler);
+      ch.takeDamage(dmg);
+
+      if (ch == Dungeon.hero) Camera.main.shake(2, 0.3f);
+      ch.sprite.centerEmitter().burst(SparkParticle.FACTORY, 3);
+      ch.sprite.flash();
+    }
+
+    if (!curUser.isAlive()) {
+      Dungeon.fail(getClass());
+      GLog.n(Messages.get(this, "ondeath"));
+    }
+  }
+
+  @Override
+  public void onHit(MagesStaff staff, Damage damage) {
+    //acts like shocking enchantment
+    new Shocking().proc(staff, damage);
+  }
+
+  private void arc(Char ch) {
+
+    affected.add(ch);
+
+    int dist;
+    if (Level.Companion.getWater()[ch.pos] && !ch.flying)
+      dist = 2;
+    else
+      dist = 1;
+
+    PathFinder.buildDistanceMap(ch.pos, BArray.not(Level.Companion.getSolid(), null), dist);
+    for (int i = 0; i < PathFinder.distance.length; i++) {
+      if (PathFinder.distance[i] < Integer.MAX_VALUE) {
+        Char n = Actor.findChar(i);
+        if (n == Dungeon.hero && PathFinder.distance[i] > 1)
+          //the hero is only zapped if they are adjacent
+          continue;
+        else if (n != null && !affected.contains(n)) {
+          arcs.add(new Lightning.Arc(ch.pos, n.pos));
+          arc(n);
+        }
+      }
+    }
+  }
+
+  @Override
+  public void fx(Ballistica bolt, Callback callback) {
+
+    affected.clear();
+    arcs.clear();
+    arcs.add(new Lightning.Arc(bolt.sourcePos, bolt.collisionPos));
+
+    int cell = bolt.collisionPos;
+
+    Char ch = Actor.findChar(cell);
+    if (ch != null) {
+      arc(ch);
+    } else {
+      CellEmitter.center(cell).burst(SparkParticle.FACTORY, 3);
+    }
+
+    //don't want to wait for the effect before processing damage.
+    curUser.sprite.parent.add(new Lightning(arcs, null));
+    callback.call();
+  }
+
+  @Override
+  public void staffFx(MagesStaff.StaffParticle particle) {
+    particle.color(0xFFFFFF);
+    particle.am = 0.6f;
+    particle.setLifespan(0.6f);
+    particle.acc.set(0, +10);
+    particle.speed.polar(-Random.Float(3.1415926f), 6f);
+    particle.setSize(0f, 1.5f);
+    particle.setSizeJitter(1f);
+    particle.shuffleXY(2f);
+    float dst = Random.Float(2f);
+    particle.x -= dst;
+    particle.y += dst;
+  }
+
+}

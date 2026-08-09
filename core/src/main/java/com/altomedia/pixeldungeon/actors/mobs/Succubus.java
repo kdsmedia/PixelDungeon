@@ -1,0 +1,139 @@
+/*
+ * Pixel Dungeon
+ * Copyright (C) 2012-2015  Oleg Dolya
+ *
+ * Shattered Pixel Dungeon
+ * Copyright (C) 2014-2016 Evan Debenham
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
+package com.altomedia.pixeldungeon.actors.mobs;
+
+import com.altomedia.pixeldungeon.PropertyConfiger;
+import com.altomedia.pixeldungeon.actors.Actor;
+import com.altomedia.pixeldungeon.actors.Char;
+import com.altomedia.pixeldungeon.actors.Damage;
+import com.altomedia.pixeldungeon.actors.buffs.Charm;
+import com.altomedia.pixeldungeon.actors.buffs.Sleep;
+import com.altomedia.pixeldungeon.effects.Speck;
+import com.altomedia.pixeldungeon.items.scrolls.ScrollOfLullaby;
+import com.altomedia.pixeldungeon.items.scrolls.ScrollOfTeleportation;
+import com.altomedia.pixeldungeon.levels.Level;
+import com.altomedia.pixeldungeon.mechanics.Ballistica;
+import com.altomedia.pixeldungeon.sprites.SuccubusSprite;
+import com.altomedia.pixeldungeon.Assets;
+import com.altomedia.pixeldungeon.Dungeon;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.PathFinder;
+import com.watabou.utils.Random;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+
+public class Succubus extends Mob {
+
+  private static final int BLINK_DELAY = 5;
+
+  private int delay = 0;
+
+  {
+    PropertyConfiger.INSTANCE.set(this, "Succubus");
+
+    spriteClass = SuccubusSprite.class;
+
+    loot = new ScrollOfLullaby();
+  }
+
+  @Override
+  public int viewDistance() {
+    return 6;
+  }
+
+  @Override
+  public Damage giveDamage(Char target) {
+    return super.giveDamage(target).addElement(Damage.Element.ICE);
+  }
+
+  @Override
+  public Damage attackProc(Damage damage) {
+    Char enemy = (Char) damage.to;
+
+    if (Random.Int(3) == 0) {
+      new Charm.Attacher(id(), Random.IntRange(3, 7)).attachTo(enemy);
+      
+      enemy.sprite.centerEmitter().start(Speck.factory(Speck.HEART), 0.2f, 5);
+      Sample.INSTANCE.play(Assets.SND_CHARMS);
+    }
+
+    return damage;
+  }
+
+  @Override
+  protected boolean getCloser(int target) {
+    if (Level.Companion.getFieldOfView()[target] && Dungeon.level.distance(pos, target) > 2
+            && delay <= 0) {
+
+      blink(target);
+      spend(-1 / speed());
+      return true;
+
+    } else {
+
+      delay--;
+      return super.getCloser(target);
+
+    }
+  }
+
+  private void blink(int target) {
+
+    Ballistica route = new Ballistica(pos, target, Ballistica.PROJECTILE);
+    int cell = route.collisionPos;
+
+    //can't occupy the same cell as another char, so move back one.
+    if (Actor.findChar(cell) != null && cell != this.pos)
+      cell = route.path.get(route.dist - 1);
+
+    if (Level.Companion.getAvoid()[cell]) {
+      ArrayList<Integer> candidates = new ArrayList<>();
+      for (int n : PathFinder.NEIGHBOURS8) {
+        cell = route.collisionPos + n;
+        if (Level.Companion.getPassable()[cell] && Actor.findChar(cell) == null) {
+          candidates.add(cell);
+        }
+      }
+      if (candidates.size() > 0)
+        cell = Random.element(candidates);
+      else {
+        delay = BLINK_DELAY;
+        return;
+      }
+    }
+
+    ScrollOfTeleportation.Companion.appear(this, cell);
+
+    delay = BLINK_DELAY;
+  }
+
+  private static final HashSet<Class<?>> IMMUNITIES = new HashSet<>();
+
+  static {
+    IMMUNITIES.add(Sleep.class);
+  }
+
+  @Override
+  public HashSet<Class<?>> immunizedBuffs() {
+    return IMMUNITIES;
+  }
+}

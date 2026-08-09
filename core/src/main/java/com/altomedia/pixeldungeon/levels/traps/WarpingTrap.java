@@ -1,0 +1,96 @@
+/*
+ * Pixel Dungeon
+ * Copyright (C) 2012-2015  Oleg Dolya
+ *
+ * Shattered Pixel Dungeon
+ * Copyright (C) 2014-2016 Evan Debenham
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
+package com.altomedia.pixeldungeon.levels.traps;
+
+import com.altomedia.pixeldungeon.Assets;
+import com.altomedia.pixeldungeon.Dungeon;
+import com.altomedia.pixeldungeon.actors.Actor;
+import com.altomedia.pixeldungeon.actors.Char;
+import com.altomedia.pixeldungeon.actors.buffs.Buff;
+import com.altomedia.pixeldungeon.actors.mobs.Mob;
+import com.altomedia.pixeldungeon.actors.mobs.npcs.GhostHero;
+import com.altomedia.pixeldungeon.effects.CellEmitter;
+import com.altomedia.pixeldungeon.effects.Speck;
+import com.altomedia.pixeldungeon.items.Heap;
+import com.altomedia.pixeldungeon.items.artifacts.DriedRose;
+import com.altomedia.pixeldungeon.items.artifacts.TimekeepersHourglass;
+import com.altomedia.pixeldungeon.items.Item;
+import com.altomedia.pixeldungeon.scenes.InterlevelScene;
+import com.altomedia.pixeldungeon.sprites.TrapSprite;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Random;
+
+import java.util.ArrayList;
+
+public class WarpingTrap extends Trap {
+
+  {
+    color = TrapSprite.TEAL;
+    shape = TrapSprite.STARS;
+  }
+
+  @Override
+  public void activate() {
+    CellEmitter.get(pos).start(Speck.factory(Speck.LIGHT), 0.2f, 3);
+    Sample.INSTANCE.play(Assets.SND_TELEPORT);
+
+    if (Dungeon.depth > 1 && !Dungeon.bossLevel()) {
+
+      //each depth has 1 more weight than the previous depth.
+      float[] depths = new float[Dungeon.depth - 1];
+      for (int i = 1; i < Dungeon.depth; i++) depths[i - 1] = i;
+      int depth = 1 + Math.max(Random.chances(depths), Random.chances(depths));
+
+      Heap heap = Dungeon.level.getHeaps().get(pos);
+      if (heap != null) {
+        ArrayList<Item> dropped = Dungeon.droppedItems.get(depth);
+        if (dropped == null) {
+          Dungeon.droppedItems.put(depth, dropped = new ArrayList<Item>());
+        }
+        for (Item item : heap.getItems()) {
+          dropped.add(item);
+        }
+        heap.destroy();
+      }
+
+      Char ch = Actor.findChar(pos);
+      if (ch == Dungeon.hero) {
+        Buff buff = Dungeon.hero.buff(TimekeepersHourglass.TimeFreeze.class);
+        if (buff != null) buff.detach();
+
+        for (Mob mob : Dungeon.level.getMobs().toArray(new Mob[0]))
+          if (mob instanceof GhostHero) mob.destroy();
+
+        InterlevelScene.mode = InterlevelScene.Mode.RETURN;
+        InterlevelScene.returnDepth = depth;
+        InterlevelScene.returnPos = -1;
+        Game.switchScene(InterlevelScene.class);
+      } else if (ch != null) {
+        ch.destroy();
+        ch.sprite.killAndErase();
+        Dungeon.level.getMobs().remove(ch);
+      }
+
+    }
+
+  }
+}
