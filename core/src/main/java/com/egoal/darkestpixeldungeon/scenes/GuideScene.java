@@ -108,8 +108,8 @@ public class GuideScene extends PixelScene {
       cb.x = WIDTH_LISTITEM + 1;
       content.add(cb);
 
-      rtmInfo_ = PixelScene.renderMultiline(6);
-      rtmInfo_.text("select to display");
+      rtmInfo_ = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY);
+      rtmInfo_.text(Messages.get(this, "select_prompt"));
       rtmInfo_.maxWidth((int) (panel.innerWidth() - WIDTH_LISTITEM - 2f));
       rtmInfo_.setPos(cb.x + 2, 2f);
       content.add(rtmInfo_);
