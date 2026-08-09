@@ -37,11 +37,21 @@ package com.watabou.glwrap;
 
 //DO NOT REFERENCE THIS CLASS ON DEVICES API 9 AND ABOVE, use android.opengl.GLES20 instead.
 @SuppressWarnings("JniMissingFunction")
+// NOTE: This native library is only required on Froyo (API 8). With minSdk 21+
+// the dead-code paths that call these methods never execute, and the obsolete
+// precompiled .so (armeabi/x86 only) has been removed so the APK ships without
+// architecture-specific native code and is compatible with 64-bit-only devices
+// such as Android 14 on arm64-v8a. The load is wrapped defensively so that even
+// if the class is initialized on a modern device, a missing library cannot crash
+// the app.
 public class FroyoGLES20Fix {
 
 	static
 	{
-		System.loadLibrary("FroyoGLES20Fix");
+		try {
+			System.loadLibrary("FroyoGLES20Fix");
+		} catch (UnsatisfiedLinkError | SecurityException ignored) {
+		}
 	}
 
 	native public static void glVertexAttribPointer(int index, int size, int type, boolean normalized, int stride, int offset);
