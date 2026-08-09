@@ -122,6 +122,7 @@ class TomeOfMastery : Item() {
                 if (a.doPickUp(curUser)) GLog.w(Messages.get(curUser, "you_now_have", a.name()))
                 else Dungeon.level.drop(a, curUser.pos).sprite.drop()
             }
+            else -> {}
         }
 
     }

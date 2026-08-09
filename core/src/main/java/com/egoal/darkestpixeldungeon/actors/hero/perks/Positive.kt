@@ -50,6 +50,7 @@ class GoodAppetite : Perk() {
                 Buff.affect(hero, Recharging::class.java, 4f)
                 ScrollOfRecharging.charge(hero)
             }
+            else -> {}
         }
     }
 

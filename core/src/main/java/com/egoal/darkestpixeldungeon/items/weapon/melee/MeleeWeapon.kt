@@ -70,6 +70,7 @@ open class MeleeWeapon : Weapon() {
         when (imbue) {
             Imbue.LIGHT -> info += "\n\n" + M.L(Weapon::class.java, "lighter")
             Imbue.HEAVY -> info += "\n\n" + M.L(Weapon::class.java, "heavier")
+            else -> {}
         }
 
         if (enchantment != null && (cursedKnown || !enchantment.curse())) {

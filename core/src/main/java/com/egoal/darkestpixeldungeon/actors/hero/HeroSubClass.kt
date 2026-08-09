@@ -104,6 +104,7 @@ enum class HeroSubClass(private val title: String) {
                     if (a.doPickUp(hero)) GLog.w(Messages.get(hero, "you_now_have", a.name()))
                     else Dungeon.level.drop(a, hero.pos).sprite.drop()
                 }
+                else -> {}
             }
         }
     }

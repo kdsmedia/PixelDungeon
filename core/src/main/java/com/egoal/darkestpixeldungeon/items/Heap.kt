@@ -119,6 +119,7 @@ class Heap : Bundlable {
                     }
                 }
             }
+            else -> {}
         }
 
         if (type != Type.MIMIC) {

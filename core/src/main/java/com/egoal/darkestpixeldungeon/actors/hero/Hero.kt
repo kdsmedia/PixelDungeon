@@ -1182,6 +1182,7 @@ class Hero : Char() {
                 when (it.type) {
                     Heap.Type.SKELETON, Heap.Type.REMAINS -> Sample.INSTANCE.play(Assets.SND_BONES)
                     Heap.Type.LOCKED_CHEST, Heap.Type.CRYSTAL_CHEST -> belongings.specialKeys[Dungeon.depth]--
+                    else -> {}
                 }
                 StatusPane.needsKeyUpdate = true
                 it.open(Dungeon.hero) // fixme

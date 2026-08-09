@@ -208,6 +208,7 @@ class Combo : Buff(), ActionIndicator.Action {
                     prolong(enemy, Vertigo::class.java, Random.NormalIntRange(1, 4).toFloat())
                 }
                 FinisherType.SLAM -> target.SHLD = max(target.SHLD, dmg.value / 2) // add shield
+                else -> {}
             }
 
             target.buff(FireImbue::class.java)?.proc(enemy)

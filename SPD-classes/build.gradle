@@ -1,18 +1,28 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    namespace "com.watabou"
+    compileSdk 35
 
-    task ndkBuild(type: Exec) {
-        description "builds JNI libs from source. " +
-                "This requires the Android NDK and is optional as precompiled libs are provided."
+    defaultConfig {
+        minSdk 21
+    }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    // Optional NDK build; precompiled .so libs are provided in jniLibs.
+    // The ndkDirectory access is deferred so the task doesn't fail when
+    // the NDK is absent (the build then just uses the shipped .so files).
+    tasks.register("ndkBuild", Exec) {
+        description "builds JNI libs from source. Requires the Android NDK; optional."
         workingDir = "./src/main"
         def ndkDir = android.ndkDirectory
-
-        //Need to start cmd first on windows systems, otherwise these are the same
         if (System.properties["os.name"].toLowerCase().contains("windows")) {
             commandLine "cmd", "/c", "$ndkDir${File.separator}ndk-build " +
                     "NDK_APPLICATION_MK=./jniSources/Application.mk " +
@@ -22,9 +32,7 @@ android {
                     "NDK_APPLICATION_MK=./jniSources/Application.mk " +
                     "NDK_LIBS_OUT=./jniLibs"
         }
-
     }
-
 }
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

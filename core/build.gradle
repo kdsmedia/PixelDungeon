@@ -1,26 +1,53 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+// Release signing config: reads credentials from gradle.properties or env,
+// falls back to the project-local keystore when not provided.
+def keystoreFile = rootProject.file("pixeldungeon.jks")
+def keystorePassword = project.hasProperty("PIXEL_KEYSTORE_PASS") ? project.PIXEL_KEYSTORE_PASS : "Kdsmedia@123"
+def keyAliasName = project.hasProperty("PIXEL_KEY_ALIAS") ? project.PIXEL_KEY_ALIAS : "pixeldungeon"
+def keyPasswordVal = project.hasProperty("PIXEL_KEY_PASS") ? project.PIXEL_KEY_PASS : "Kdsmedia@123"
+
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    namespace "com.egoal.darkestpixeldungeon"
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.altomedia.pixeldungeon"
+        minSdk 21
+        targetSdk 35
+    }
+
+    signingConfigs {
+        release {
+            storeFile keystoreFile
+            storePassword keystorePassword
+            keyAlias keyAliasName
+            keyPassword keyPasswordVal
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
     }
 
     buildTypes {
         release {
             shrinkResources true
             minifyEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
 
 dependencies {
-    compile project(':SPD-classes')
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation project(':SPD-classes')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
 repositories {
     mavenCentral()
