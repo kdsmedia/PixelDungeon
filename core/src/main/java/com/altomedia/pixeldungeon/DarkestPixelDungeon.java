@@ -190,6 +190,14 @@ public class DarkestPixelDungeon extends Game {
 
     Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(this));
 
+    // On Android 15 (API 35) targeting SDK 35, edge-to-edge is enforced and
+    // the app window is drawn behind the system navigation bar, which hides
+    // the bottom toolbar/menu. Opt out of edge-to-edge so the nav bar
+    // reserves its own space and the bottom UI stays accessible.
+    if (android.os.Build.VERSION.SDK_INT >= 30) {
+      instance.getWindow().setDecorFitsSystemWindows(true);
+    }
+
     updateImmersiveMode();
 
     DisplayMetrics metrics = new DisplayMetrics();
@@ -359,7 +367,36 @@ public class DarkestPixelDungeon extends Game {
 
   @SuppressLint("NewApi")
   public static void updateImmersiveMode() {
-    if (android.os.Build.VERSION.SDK_INT >= 19) {
+    if (android.os.Build.VERSION.SDK_INT >= 30) {
+      // Modern API: setSystemUiVisibility is deprecated/ignored on API 30+.
+      // Use WindowInsetsController to actually hide or show the system bars.
+      try {
+        android.view.WindowInsetsController controller =
+                instance.getWindow().getInsetsController();
+        if (controller != null) {
+          if (immersed()) {
+            // Fullscreen game: hide both bars and let the app use the whole
+            // screen. setDecorFitsSystemWindows(false) so the surface spans
+            // the full display while the bars are hidden.
+            instance.getWindow().setDecorFitsSystemWindows(false);
+            controller.hide(
+                    android.view.WindowInsets.Type.statusBars() |
+                            android.view.WindowInsets.Type.navigationBars());
+            controller.setSystemBarsBehavior(
+                    android.view.WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+          } else {
+            // Reserve space for the nav bar so the bottom toolbar is never
+            // hidden behind it.
+            instance.getWindow().setDecorFitsSystemWindows(true);
+            controller.show(
+                    android.view.WindowInsets.Type.statusBars() |
+                            android.view.WindowInsets.Type.navigationBars());
+          }
+        }
+      } catch (Exception e) {
+        reportException(e);
+      }
+    } else if (android.os.Build.VERSION.SDK_INT >= 19) {
       try {
         // Sometime NullPointerException happens here
         instance.getWindow().getDecorView().setSystemUiVisibility(

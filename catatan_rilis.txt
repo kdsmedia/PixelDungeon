@@ -13,7 +13,7 @@ BUILD TERBARU
 Versi Aplikasi : 0.4.1 (versionCode 34)
 Package        : com.altomedia.pixeldungeon
 Tanggal Build  : 2026-08-09
-Commit         : hapus bahasa Cina, Indonesia jadi default
+Commit         : perbaiki portrait terpotong / menu bawah tak terakses
 Status         : [RILIS] ditandatangani keystore ALTOMEDIA
 
 Berkas output:
@@ -21,21 +21,33 @@ Berkas output:
   - ALTOMEDIA/build/darkestpixeldungeon-release.aab  (7.4 MB)
 
 Perubahan pada build ini:
-  [PERBAIKAN] Hapus bahasa Cina & jadikan Indonesia default:
-    - Hapus enum CHINESE dari Languages.java (termasuk credit
-      penerjemah Cina), sisakan INDONESIAN (default) & ENGLISH
-    - Fallback matchCode diubah dari ENGLISH -> INDONESIAN
-    - Hapus 8 file properties Cina: actors_zh, items_zh, levels_zh,
-      misc_zh, plants_zh, scenes_zh, ui_zh, windows_zh
-    - Hapus blok khusus CHINESE di WndLangs.java (peringatan
-      "do_not_change") dan key windows.wndlangs.do_not_change
-    - Bersihkan komentar CHINESE di DarkestPixelDungeon.java
-      (classicFont)
-    - Urutan enum diubah: INDONESIAN pertama (default), ENGLISH kedua
+  [PERBAIKAN] Portrait bagian bawah terpotong, menu tak terakses:
+    - Akar masalah: targetSdk 35 (Android 15) memberlakukan mode
+      edge-to-edge, sehingga window digambar di belakang navigation
+      bar sistem. Toolbar/menu bawah tertutup nav bar.
+    - Opt-out edge-to-edge: setDecorFitsSystemWindows(true) di
+      onCreate (API 30+) agar nav bar memesan tempat sendiri dan
+      UI bawah selalu terlihat/terakses
+    - Modernisasi updateImmersiveMode: pakai WindowInsetsController
+      (API 30+) untuk benar-benar menyembunyikan/menampilkan system
+      bars (setSystemUiVisibility sudah deprecated/diabaikan di
+      API 30+). Immersive aktif = fullscreen, non-immersive = nav
+      bar memesan tempat.
 
 ------------------------------------------------------------------
 RIWAYAT BUILD (sebelumnya)
 ------------------------------------------------------------------
+Build #4 (2026-08-09, commit 0b00870):
+  - [PERBAIKAN] Hapus bahasa Cina & jadikan Indonesia default:
+    - Hapus enum CHINESE dari Languages.java beserta credit
+      penerjemah Cina, sisakan INDONESIAN (default) & ENGLISH
+    - Fallback matchCode diubah dari ENGLISH -> INDONESIAN
+    - Hapus 8 file properties Cina: actors_zh, items_zh, levels_zh,
+      misc_zh, plants_zh, scenes_zh, ui_zh, windows_zh
+    - Hapus blok khusus CHINESE di WndLangs.java dan key
+      windows.wndlangs.do_not_change
+    - Bersihkan komentar CHINESE di DarkestPixelDungeon.java
+
 Build #3 (2026-08-09, commit 9fe2b00):
   - [PERBAIKAN] Perkecil lagi ukuran teks tombol & menu:
     - Konstanta font di PixelScene diturunkan:
