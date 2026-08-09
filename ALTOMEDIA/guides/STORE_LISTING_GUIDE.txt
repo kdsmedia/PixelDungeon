@@ -1,0 +1,216 @@
+================================================================================
+PANDUAN STORE LISTING LENGKAP — Darkest Pixel Dungeon
+Complete Google Play Store Listing Guide
+================================================================================
+Aplikasi : Darkest Pixel Dungeon
+Package  : com.altomedia.pixeldungeon
+Versi    : 0.4.1 (versionCode 34)
+Developer: ALTOMEDIA
+================================================================================
+
+Panduan ini berisi seluruh materi siap-tempel (copy-paste) untuk mengisi form
+Main Store Listing di Google Play Console, beserta spesifikasi aset grafis dan
+strategi penempatan (store presence).
+
+
+--------------------------------------------------------------------------------
+1. IDENTITAS APLIKASI
+--------------------------------------------------------------------------------
+App name (nama):          Darkest Pixel Dungeon
+Default language:         English (United States) — en-US
+App type:                 Game
+Category:                 Game
+Sub-category / Tags:      Role Playing, Strategy, Adventure, Roguelike
+Pricing:                  Free
+Contains ads:             No
+In-app purchases:         No
+Application ID:           com.altomedia.pixeldungeon
+Minimum Android:          Android 5.0 (Lollipop, API 21)
+Target Android:           Android 15 (API 35)
+
+
+--------------------------------------------------------------------------------
+2. SHORT DESCRIPTION (MAX 80 KARAKTER)
+--------------------------------------------------------------------------------
+
+Pilih salah satu:
+
+  (a) "A deep roguelike dungeon crawler with tactical turn-based combat."
+      (70 char)
+
+  (b) "Descend into pixel dungeons. Tactical combat. No ads. No IAP."
+      (64 char)
+
+  (c) "Roguelike dungeon crawler: combos, classes, perks & epic loot."
+      (66 char)
+
+  Rekomendasi: gunakan (a) untuk deskripsi utama, (b) sebagai alternatif A/B.
+
+
+--------------------------------------------------------------------------------
+3. FULL DESCRIPTION (MAX 4000 KARAKTER)
+--------------------------------------------------------------------------------
+
+Descend into the Darkest Pixel Dungeon — a deep, unforgiving roguelike
+dungeon crawler that combines classic pixel-art charm with modern tactical
+depth. Every descent is different: procedurally generated levels, hundreds of
+items, and brutal enemies stand between you and the treasures buried in the
+dark.
+
+== TACTICAL TURN-BASED COMBAT ==
+Fight smart, not fast. Darkest Pixel Dungeon rewards strategy with a rich
+combo system: chain your attacks to build momentum and unleash devastating
+finishers. Cleave through groups, slam for shields, crush with raw power, or
+unleash a fury of blows. Time your strikes, read the battlefield, and turn
+every encounter into a puzzle of positioning and timing.
+
+== MULTIPLE HEROES & SUBCLASSES ==
+Choose your path. Each hero class plays differently, with unique subclasses
+that fundamentally change your build:
+  - BERSERKER — embrace rage and grow stronger as you take damage
+  - ASSASSIN — strike from the shadows for lethal bursts
+  - WARLOCK — wield the Urn of Shadow and dark magic
+  - WITCH — extract and reinforce with alchemy
+  - STARGAZER — channel the Astrolabe and cosmic power
+Deepen your hero further with a perk system: Fearless, Optimistic, and many
+more shape how you survive the depths.
+
+== PROCEDURAL DUNGEONS ==
+No two runs are the same. Every level is generated fresh — rooms, corridors,
+traps, enemies, and loot are rearranged each descent. Adapt or perish.
+
+== HUNDREDS OF ITEMS ==
+Discover an enormous arsenal: melee weapons with weight and tiers, armor,
+potions, scrolls, wands, rings, and powerful artifacts. Items are cursed or
+enchanted — identify them before you equip, or risk a nasty surprise. Every
+piece of loot changes your strategy.
+
+== DEEP CUSTOMIZATION ==
+  - Perks and buffs that transform your hero
+  - Weapon enchantments and special effects
+  - Combo finishers with unique mechanics
+  - Subclasses unlocked through the Tome of Mastery
+
+== FULLY OFFLINE, NO ADS, NO IAP ==
+Darkest Pixel Dungeon is a complete experience with no strings attached:
+  - No internet connection required after install
+  - No account, login, or registration
+  - No advertisements of any kind
+  - No in-app purchases or microtransactions
+Everything is unlocked through gameplay. Just you, the dungeon, and your wits.
+
+== CHALLENGING & REPLAYABLE ==
+Death is permanent — but every run teaches you something new. Learn enemy
+patterns, master item synergies, and push deeper than before. Track your
+progress with badges and push for that perfect run.
+
+Designed for fans of classic roguelikes and modern dungeon crawlers alike,
+Darkest Pixel Dungeon is a love letter to the genre — crafted in beautiful
+pixel art and tuned for deep, satisfying strategy.
+
+== FEATURES ==
+  - Turn-based tactical combat with combo finishers
+  - Multiple hero classes and subclasses
+  - Procedurally generated dungeon levels
+  - Hundreds of weapons, armor, potions, scrolls, and artifacts
+  - Perk system and weapon enchantments
+  - Beautiful retro pixel-art visuals
+  - Fully offline single-player
+  - No ads, no in-app purchases
+  - Optimized for Android 5.0+ (API 21) through Android 15 (API 35)
+
+Descend. Survive. Conquer the Darkest Pixel Dungeon.
+
+
+--------------------------------------------------------------------------------
+4. ASET GRAFIS — SPESIFIKASI & FILE
+--------------------------------------------------------------------------------
+
+Semua file ada di folder ALTOMEDIA/graphics/.
+
+4.1 App icon
+    - File:        icon_512.png
+    - Dimensi:     512 x 512 px
+    - Format:      PNG 32-bit
+    - Catatan:     Tidak boleh menggunakan alpha channel (transparan) untuk
+                   icon Play Store. Pastikan background solid.
+
+4.2 Feature graphic
+    - File:        feature_graphic_1024x500.png
+    - Dimensi:     1024 x 500 px
+    - Format:      PNG atau JPG (tanpa alpha)
+
+4.3 Phone screenshots
+    - File:        screenshot_01_phone.png  (Hero select / title)
+                   screenshot_02_phone.png  (Items & loot)
+                   screenshot_03_phone.png  (Perks & buffs)
+                   screenshot_04_phone.png  (Combat & effects)
+    - Dimensi:     1080 x 1920 px (portrait, rasio 9:16)
+    - Format:      PNG atau JPG
+    - Minimum:     2 screenshot wajib
+    - Maksimum:    8 screenshot per tipe perangkat
+
+4.4 Aset tambahan (opsional, jika tersedia):
+    - 7" tablet screenshot (min 1024x500 / recommended 1200x1200)
+    - 10" tablet screenshot (recommended 1920x1200)
+    - Promo graphic (320x180) — untuk promo lama (opsional)
+    - TV banner (1280x720) — jika mendukung Android TV
+
+
+--------------------------------------------------------------------------------
+5. KATEGORI & TAG
+--------------------------------------------------------------------------------
+Category:          Game
+Sub-tags:          Role Playing, Strategy, Adventure
+Keywords (search): roguelike, dungeon crawler, pixel, turn-based, RPG,
+                   offline RPG, free RPG, no ads, no IAP, retro
+
+
+--------------------------------------------------------------------------------
+6. KONTAK
+--------------------------------------------------------------------------------
+Developer email:   support@altomedia.app
+Website (opsional): https://altomedia.app
+Privacy Policy URL: https://altomedia.app/privacy/darkestpixeldungeon
+
+
+--------------------------------------------------------------------------------
+7. LOCALIZATION (TERJEMAHAN) — OPSIONAL
+--------------------------------------------------------------------------------
+Untuk menjangkau pasar lebih luas, tambahkan terjemahan store listing untuk:
+  - id-ID (Bahasa Indonesia)
+  - es-ES (Spanyol)
+  - pt-BR (Portugis Brasil)
+  - ja-JP (Jepang)
+  - zh-CN (Mandarin Sederhana)
+Translate short description, full description, dan feature graphic untuk tiap
+bahasa. App name tetap "Darkest Pixel Dungeon".
+
+
+--------------------------------------------------------------------------------
+8. TIPS OPTIMASI STORE LISTING
+--------------------------------------------------------------------------------
+
+8.1 Experiment (A/B testing):
+    - Gunakan fitur "Store listing experiments" untuk menguji dua varian
+      icon/screenshot/description dan lihat mana yang meningkatkan install.
+
+8.2 Screenshot pertama paling penting:
+    - Screenshot pertama tampil di hasil pencarian dan card. Pastikan
+      screenshot_01 menarik dan jelas.
+
+8.3 Keyword di deskripsi:
+    - Masukkan kata kunci alami ("roguelike", "dungeon", "RPG", "offline")
+      di full description untuk SEO Play Store.
+
+8.4 Update rutin:
+    - Update screenshot & feature graphic tiap rilis besar untuk menunjukkan
+      konten baru.
+
+8.5 Rating & review:
+    - Dorong user untuk rating setelah beberapa sesi main (in-app prompt).
+      Balas review untuk membangun trust.
+
+================================================================================
+AKHIR PANDUAN STORE LISTING
+================================================================================

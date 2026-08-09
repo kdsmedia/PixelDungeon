@@ -1,0 +1,251 @@
+================================================================================
+PRIVACY POLICY — Darkest Pixel Dungeon
+================================================================================
+Application:    Darkest Pixel Dungeon
+Application ID: com.altomedia.pixeldungeon
+Version:        0.4.1 (versionCode 34)
+Developer:      ALTOMEDIA
+Effective Date: 8 August 2026
+Last Updated:   8 August 2026
+Contact:        privacy@altomedia.app
+================================================================================
+
+This Privacy Policy describes how ALTOMEDIA ("we", "us", or "our") collects,
+uses, discloses, and safeguards information when you install and use the
+Darkest Pixel Dungeon mobile application ("the App", "the Game", or "the
+Service"). By downloading, installing, accessing, or otherwise using the App,
+you ("the User", "you", or "your") acknowledge that you have read, understood,
+and agree to the practices described in this Privacy Policy. If you do not
+agree with this Privacy Policy, please do not download or use the App.
+
+This Privacy Policy complies with applicable data protection laws and
+regulations, including the General Data Protection Regulation (GDPR, Regulation
+(EU) 2016/679), the California Consumer Privacy Act (CCPA), the Children's
+Online Privacy Protection Act (COPPA), and the Google Play Developer Program
+Policies.
+
+
+--------------------------------------------------------------------------------
+1. INFORMATION WE COLLECT
+--------------------------------------------------------------------------------
+
+1.1 Information You Provide Directly
+   The App does not require you to create an account, register, or log in. You
+   are not asked to provide a username, email address, password, phone number,
+   or any other personally identifiable information (PII) in order to play the
+   Game. The Game is fully playable in offline mode without submitting any
+   personal data.
+
+1.2 Automatically Collected Technical Information
+   When the App is installed or launched, the operating system and the Google
+   Play Store may automatically collect and transmit certain technical
+   information that is not personally identifiable on its own, including:
+     - Device model and manufacturer
+     - Android operating system version
+     - Screen resolution and density
+     - Device language and locale settings
+     - App version (versionCode / versionName)
+     - Crash logs and stack traces (via the Android platform)
+   This information is collected and processed by Google Play Services and the
+   Android operating system, not directly by the App. We do not operate our own
+   backend servers that receive this data.
+
+1.3 Gameplay and Save Data
+   The App stores your game progress, settings, unlocked badges, hero
+   statistics, and preferences locally on your device using Android's internal
+   storage. This data remains on your device and is not transmitted to us or to
+   any third party. If you uninstall the App, all locally stored game data is
+   permanently deleted.
+
+1.4 Permissions Requested
+   The App requests the following Android permission:
+     - VIBRATE: Used to provide haptic feedback during gameplay events such as
+       combat, level-up, and item pickup. This permission does not access,
+       collect, or transmit any personal data.
+   The App does NOT request the following permissions:
+     - Internet / network access (no network communication)
+     - Camera or microphone
+     - Contacts, call logs, or SMS
+     - Location (GPS or network-based)
+     - Storage access beyond its own private app data
+     - Microphone or recording
+     - Phone state or identity
+
+1.5 Information We Do NOT Collect
+   We do not collect, store, or process:
+     - Personal identification information (name, email, phone)
+     - Financial or payment information (the App contains no in-app purchases)
+     - Precise geolocation data
+     - Biometric data
+     - Health data
+     - Information about other apps on your device
+
+
+--------------------------------------------------------------------------------
+2. ADVERTISING AND ANALYTICS
+--------------------------------------------------------------------------------
+
+2.1 No Third-Party Advertising
+   The App does not display third-party advertisements. The App does not
+   integrate any advertising SDK, including but not limited to Google AdMob,
+   Facebook Audience Network, Unity Ads, AppLovin, or IronSource. No ad
+   network collects data through the App.
+
+2.2 No Third-Party Analytics
+   The App does not integrate third-party analytics SDKs such as Google
+   Analytics for Firebase, Flurry, Mixpanel, Amplitude, or AppsFlyer. We do not
+   track user behaviour, session length, retention, or funnels through any
+   external analytics service.
+
+2.3 No In-App Purchases
+   The App is distributed without in-app purchases (IAP). There is no payment,
+   billing, or transaction system within the App. No financial data is ever
+   requested or processed.
+
+
+--------------------------------------------------------------------------------
+3. HOW WE USE INFORMATION
+--------------------------------------------------------------------------------
+
+Because the App does not collect personal data directly, the limited technical
+information described in Section 1.2 is used by Google Play and the Android
+platform for the following purposes:
+   - Delivering and updating the App through Google Play
+   - Compatibility checks across Android versions and devices
+   - Aggregate, anonymized statistics shown in the Google Play Console
+     (installs, uninstalls, crashes), which are provided by Google and do not
+     identify individual users
+We do not use any data for behavioural profiling, targeted advertising, or
+algorithmic decision-making about you.
+
+
+--------------------------------------------------------------------------------
+4. HOW INFORMATION IS SHARED
+--------------------------------------------------------------------------------
+
+4.1 We do not sell, rent, or trade personal data to any third party. The App
+     has no advertising or analytics partners to which data could be disclosed.
+
+4.2 Service Providers: The App relies solely on Google Play for distribution
+     and update delivery. Google's handling of data is governed by Google's
+     Privacy Policy (https://policies.google.com/privacy).
+
+4.3 Legal Compliance: In the unlikely event that we are required by law, court
+     order, or legitimate legal process to disclose information, we will comply
+     only to the extent strictly necessary and permitted by law. Because the
+     App does not collect personal data, such disclosure would be limited to
+     non-personal technical information.
+
+
+--------------------------------------------------------------------------------
+5. DATA SECURITY
+--------------------------------------------------------------------------------
+
+We are committed to protecting the integrity of the App. Because the App
+operates entirely on-device and does not transmit personal data to our servers,
+the risk of a data breach affecting your personal information is minimized. The
+App is built with the Android Software Development Kit (SDK) target API level
+35 and minimum API level 21, conforming to current Google Play security
+requirements. Game data is stored in the App's private internal storage, which
+is sandboxed by the Android operating system and not accessible to other apps.
+
+
+--------------------------------------------------------------------------------
+6. CHILDREN'S PRIVACY
+--------------------------------------------------------------------------------
+
+The App is suitable for users of all ages and does not knowingly collect
+personal information from children under the age of 13 (or the equivalent
+minimum age in the relevant jurisdiction). Because the App does not collect
+personal data, does not display advertising, and does not include in-app
+purchases, it is designed to be compliant with COPPA and Google Play's Families
+Policy. Parents or guardians who have questions about the App may contact us at
+privacy@altomedia.app. If we learn that we have inadvertently collected
+personal information from a child, we will take immediate steps to delete such
+information.
+
+
+--------------------------------------------------------------------------------
+7. YOUR PRIVACY RIGHTS
+--------------------------------------------------------------------------------
+
+Depending on your jurisdiction, you may have the following rights regarding
+your personal data:
+
+   - Right to Access: Request a copy of personal data we hold about you.
+   - Right to Rectification: Request correction of inaccurate data.
+   - Right to Erasure: Request deletion of your personal data.
+   - Right to Restriction: Request that we limit processing of your data.
+   - Right to Data Portability: Receive your data in a structured format.
+   - Right to Object: Object to processing based on legitimate interests.
+   - Right to Withdraw Consent: Withdraw any previously given consent.
+
+Because the App does not collect or store personal data on our servers, most of
+these rights are satisfied automatically. To exercise any applicable right,
+contact us at privacy@altomedia.app. We will respond within 30 days.
+
+For California residents, additional rights under the CCPA include the right to
+know what personal information is collected, the right to delete, and the right
+to opt out of the sale of personal information. We do not sell personal
+information.
+
+
+--------------------------------------------------------------------------------
+8. INTERNATIONAL USERS
+--------------------------------------------------------------------------------
+
+The App is available globally through Google Play. Because the App operates
+locally on your device and does not transmit personal data internationally, no
+cross-border data transfer of personal information occurs. If you are accessing
+the App from the European Economic Area (EEA), the United Kingdom, or
+Switzerland, you have the rights described in Section 7 under the GDPR.
+
+
+--------------------------------------------------------------------------------
+9. THIRD-PARTY LINKS AND SERVICES
+--------------------------------------------------------------------------------
+
+The App does not contain links to external websites or third-party services
+within the gameplay. Distribution and updates are handled exclusively through
+Google Play, which is governed by Google's own Privacy Policy and Terms of
+Service. We are not responsible for the privacy practices of Google Play or any
+other third party.
+
+
+--------------------------------------------------------------------------------
+10. DATA RETENTION
+--------------------------------------------------------------------------------
+
+The App does not retain personal data on any server. Locally stored game data
+is retained on your device for as long as the App is installed. Upon
+uninstallation, all locally stored data is automatically removed by the Android
+operating system.
+
+
+--------------------------------------------------------------------------------
+11. CHANGES TO THIS PRIVACY POLICY
+--------------------------------------------------------------------------------
+
+We may update this Privacy Policy from time to time. When we do, we will revise
+the "Last Updated" date at the top of this document. Material changes will be
+reflected in an App update distributed through Google Play. We encourage you to
+review this Privacy Policy periodically.
+
+
+--------------------------------------------------------------------------------
+12. CONTACT US
+--------------------------------------------------------------------------------
+
+If you have any questions, concerns, or requests regarding this Privacy Policy
+or the App's data practices, please contact us:
+
+   Developer:    ALTOMEDIA
+   Email:        privacy@altomedia.app
+   Package:      com.altomedia.pixeldungeon
+
+By using the App, you confirm that you have read this Privacy Policy and agree
+to its terms.
+
+================================================================================
+END OF PRIVACY POLICY
+================================================================================

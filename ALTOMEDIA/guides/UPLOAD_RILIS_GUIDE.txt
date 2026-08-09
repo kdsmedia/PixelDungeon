@@ -1,0 +1,263 @@
+================================================================================
+PANDUAN UPLOAD RILIS & UPLOAD LISTING — Darkest Pixel Dungeon
+Play Console Release & Listing Upload Guide
+================================================================================
+Aplikasi : Darkest Pixel Dungeon
+Package  : com.altomedia.pixeldungeon
+Versi    : 0.4.1 (versionCode 34)
+Developer: ALTOMEDIA
+Tgl      : 8 Agustus 2026
+================================================================================
+
+Panduan ini menjelaskan langkah demi langkah cara mengunggah (upload) paket
+rilis aplikasi Darkest Pixel Dungeon ke Google Play Console, termasuk
+konfigurasi listing, upload AAB/APK, dan proses rilis ke production.
+
+
+--------------------------------------------------------------------------------
+BAGIAN A — PERSIAPAN SEBELUM UPLOAD
+--------------------------------------------------------------------------------
+
+A1. Pastikan build sudah sesuai persyaratan Play Console saat ini:
+    - targetSdkVersion: 35 (WAJIB untuk app baru & update tahun 2026 sesuai
+      kebijakan Google Play target API level terbaru)
+    - minSdkVersion: 21 (Android 5.0 Lollipop, mencakup >98% perangkat aktif)
+    - compileSdkVersion: 35
+    - Application ID: com.altomedia.pixeldungeon
+    - versionCode: 34  (bilangan bulat, harus lebih besar dari versi sebelumnya)
+    - versionName: 0.4.1
+    - Format rilis: Android App Bundle (.aab) — WAJIB untuk app baru sejak 2021
+    - Signing: App ditandatangani dengan keystore pixeldungeon.jks
+      (alias: pixeldungeon, CN=pixeldungeon)
+
+A2. Prasyarat akun:
+    - Akun Google Play Developer yang sudah terverifikasi ($25 sekali daftar)
+    - Akun sudah menyelesaikan verifikasi identitas (ID + D-U-N-S untuk
+      organisasi, atau ID pribadi untuk individu)
+    - 14-day waiting period untuk akun baru sudah terlewati (jika akun baru)
+
+A3. File yang dibutuhkan (semua ada di folder ALTOMEDIA/):
+    - ALTOMEDIA/build/darkestpixeldungeon-release.aab   (untuk upload utama)
+    - ALTOMEDIA/build/darkestpixeldungeon-release.apk   (untuk testing internal)
+    - ALTOMEDIA/graphics/icon_512.png                   (app icon 512x512)
+    - ALTOMEDIA/graphics/feature_graphic_1024x500.png   (feature graphic)
+    - ALTOMEDIA/graphics/screenshot_01..04_phone.png    (4 screenshot)
+    - ALTOMEDIA/legal/PRIVACY_POLICY.txt                (privacy policy)
+    - ALTOMEDIA/legal/TERMS_OF_SERVICE.txt              (terms of service)
+
+
+--------------------------------------------------------------------------------
+BAGIAN B — MEMBUAT APLIKASI BARU DI PLAY CONSOLE
+--------------------------------------------------------------------------------
+
+B1. Login ke https://play.google.com/console
+B2. Klik "Create app" (Buat aplikasi).
+B3. Isi form detail aplikasi:
+    - App name: Darkest Pixel Dungeon
+    - Default language: English (United States) — en-US
+    - App type: Game
+    - Pricing: Free
+B4. Centang deklarasi:
+    - "Your app is a paid app or uses in-app billing" → TIDAK (gratis, tanpa IAP)
+    - "Your app contains ads" → TIDAK (tidak ada iklan)
+    - "Your app uses government entity data" → TIDAK
+B5. Klik "Create app".
+
+
+--------------------------------------------------------------------------------
+BAGIAN C — MENYELESAIKAN "SET UP YOUR APP" (DASHBOARD TASKS)
+--------------------------------------------------------------------------------
+
+Play Console menampilkan daftar tugas setup di dashboard. Selesaikan secara
+berurutan:
+
+C1. Privacy Policy:
+    - Tambahkan URL privacy policy.
+    - Jika belum host online, gunakan layanan hosting (GitHub Pages, Google
+      Sites) untuk memublikasikan isi ALTOMEDIA/legal/PRIVACY_POLICY.txt.
+    - Contoh URL: https://altomedia.app/privacy/darkestpixeldungeon
+    - Atau centang "I'm not submitting a privacy policy" HANYA jika tidak
+      meminta permission sensitif (kurang disarankan).
+
+C2. App access:
+    - Pilih "Your app doesn't have ads to access app functionality"
+    - Karena tidak ada login/akun, tidak perlu setup credentials demo.
+
+C3. Ads:
+    - Jawab "No, my app does not contain ads".
+
+C4. Content rating:
+    - Klik "Start questionnaire".
+    - Isi kuesionar IARC:
+        * Violence: Cartoon-ish / unrealistic violence (permainan roguelike
+          fantasi dengan pertarungan bergiliran, tanpa darah realistis).
+        * Language: No offensive language.
+        * Substance use: None.
+        * User-generated content: None (single-player offline).
+        * Digital goods purchase: None (tidak ada IAP).
+        * Sharing user data: None.
+    - Rating yang diharapkan: ESRB E10+ / PEGI 7 / USK 6 / atau Everyone.
+    - Simpan rating.
+
+C5. Target audience:
+    - Pilih target usia: 13+ (atau sesuai hasil content rating).
+    - Centang "My app does not knowingly target children" bila tidak
+      ditujukan khusus anak-anak.
+
+C6. News app: pilih "No".
+
+C7. Data safety (PENTING):
+    - Klik "Start" pada Data safety form.
+    - Jawab pertanyaan:
+        * "Does your app collect or share any of the required user data
+          types?" → NO (aplikasi tidak mengumpulkan data pribadi; tidak ada
+          SDK iklan/analytics/IAP).
+        * "Is all of the user data collected by your app encrypted in
+          transit?" → (Tidak relevan, tidak ada data dikumpulkan) → Yes/NA
+        * "Do you provide a way for users to request that their data is
+          deleted?" → Yes (data lokal dihapus saat uninstall).
+    - Karena tidak ada data yang dikumpulkan, form akan menandakan "No data
+      collected".
+    - Submit.
+
+C8. Government apps: pilih "No".
+
+C9. Financial features: pilih "No" (tidak ada IAP / fungsi keuangan).
+
+C10. Privacy Policy URL (confirm same as C1).
+
+
+--------------------------------------------------------------------------------
+BAGIAN D — STORE LISTING (MAIN STORE LISTING)
+--------------------------------------------------------------------------------
+
+D1. Masuk ke: Grow → Store presence → Main store listing.
+D2. Isi detail listing:
+
+    [App details]
+    - App name: Darkest Pixel Dungeon
+    - Short description (max 80 char):
+      "A deep roguelike dungeon crawler with tactical turn-based combat."
+    - Full description (max 4000 char):
+      (Salin dari ALTOMEDIA/guides/STORE_LISTING_GUIDE.txt bagian full
+      description, atau lihat bagian D di file tersebut.)
+
+    [App icon]
+    - Upload ALTOMEDIA/graphics/icon_512.png (512x512 PNG, 32-bit, no alpha)
+
+    [Feature graphic]
+    - Upload ALTOMEDIA/graphics/feature_graphic_1024x500.png (1024x500 PNG/JPG)
+
+    [App screenshots]
+    - Upload minimal 2 screenshot (disarankan 4):
+        * ALTOMEDIA/graphics/screenshot_01_phone.png
+        * ALTOMEDIA/graphics/screenshot_02_phone.png
+        * ALTOMEDIA/graphics/screenshot_03_phone.png
+        * ALTOMEDIA/graphics/screenshot_04_phone.png
+    - Tipe: Phone
+    - Dimensi: 1080x1920 (portrait) — sesuai requirement min 320px, max 3840px
+
+    [Phone screenshot] — upload 4 screenshot di atas
+    [Tablet screenshot] — opsional, bisa reuse screenshot phone
+
+    [App category]
+    - Category: Game
+    - Sub-category (Tags): Role Playing, Strategy, Adventure
+
+    [Contact details]
+    - Email: support@altomedia.app  (atau email developer)
+
+D3. Klik "Save" (Simpan).
+
+
+--------------------------------------------------------------------------------
+BAGIAN E — UPLOAD APP BUNDLE (.AAB)
+--------------------------------------------------------------------------------
+
+E1. Masuk ke: Release → Production (atau Testing → Internal/Closed untuk
+    pengujian dahulu).
+E2. Klik "Create new release".
+E3. App bundles:
+    - Upload file: ALTOMEDIA/build/darkestpixeldungeon-release.aab
+    - Tunggu hingga processing selesai (Play Console akan menampilkan version
+      code 34 dan version name 0.4.1).
+E4. Release name: 0.4.1
+E5. Release notes (What's new):
+    - Isi ringkasan perubahan, contoh:
+      "Initial release. Tactical roguelike dungeon crawler with combo combat,
+       hero classes, perks, and hundreds of items. Fully offline, no ads, no
+       in-app purchases."
+
+E6. Release review:
+    - Google Play App Signing:
+        * Jika ini rilis pertama, Play Console akan meminta mengaktifkan
+          "Play App Signing". Pilih "Use Play App Signing" (Google akan
+          men-generate upload key yang dipetakan ke app signing key).
+        * ATAU pilih "Let Google manage and protect your app signing key
+          (recommended)".
+        * Jika Anda ingin tetap memakai keystore sendiri (pixeldungeon.jks)
+          untuk signing, pilih "Choose signing key" → "Export and upload a
+          key from Java keystore" dan ikuti instruksi PEPK tool.
+        * Catatan: app sudah ditandatangani dengan pixeldungeon.jks. Untuk
+          konsistensi update mendatang, simpan keystore ini aman DAN/ATAU
+          ikuti Play App Signing.
+
+E7. Klik "Next" → "Review release".
+E8. Periksa warning/error:
+    - Jika ada error permission atau target API, perbaiki sesuai pesan.
+    - Jika ada warning "unreleased changes", selesaikan semua task Store
+      Listing / Data safety terlebih dahulu.
+E9. Klik "Start rollout to Production".
+E10. Konfirmasi "Rollout".
+
+Setelah rollout, status akan menjadi "In review" (1–7 hari), lalu "Published".
+
+
+--------------------------------------------------------------------------------
+BAGIAN F — TESTING SEBELUM PRODUCTION (DISARANKAN)
+--------------------------------------------------------------------------------
+
+Sebelum rilis ke Production, disarankan lakukan pengujian bertahap:
+
+F1. Internal testing:
+    - Release → Testing → Internal testing → Create new release.
+    - Upload darkestpixeldungeon-release.apk (atau .aab).
+    - Tambahkan tester (email) di "Testers" tab.
+    - Bagikan link opt-in ke tester.
+
+F2. Closed testing (Alpha/Beta):
+    - Setelah internal testing OK, buat Closed testing release.
+
+F3. Open testing (Beta publik):
+    - Opsional: rilis beta ke publik untuk feedback luas.
+
+F4. Production rollout bertahap:
+    - Saat production release, gunakan "Staged rollout" (misal 10% → 50% →
+      100%) untuk meminimalkan risiko.
+
+
+--------------------------------------------------------------------------------
+BAGIAN G — CHECKLIST FINAL RILIS
+--------------------------------------------------------------------------------
+
+[ ] targetSdk 35, minSdk 21, compileSdk 35 terpasang
+[ ] applicationId com.altomedia.pixeldungeon
+[ ] versionCode 34, versionName 0.4.1
+[ ] AAB ditandatangani dengan keystore (pixeldungeon.jks)
+[ ] App icon 512x512 diupload
+[ ] Feature graphic 1024x500 diupload
+[ ] Minimal 2 screenshot diupload
+[ ] Privacy Policy URL diisi
+[ ] Data safety form selesai ("No data collected")
+[ ] Content rating questionnaire selesai (IARC)
+[ ] Target audience diisi
+[ ] Ads: "No ads" dipilih
+[ ] App access: "No login / no ads" dipilih
+[ ] Store listing lengkap (short + full description)
+[ ] Release dibuat dengan AAB
+[ ] Review release tanpa error
+[ ] Rollout ke Production dimulai
+
+================================================================================
+AKHIR PANDUAN UPLOAD
+================================================================================
