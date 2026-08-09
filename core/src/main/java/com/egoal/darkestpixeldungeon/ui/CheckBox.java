@@ -36,16 +36,27 @@ public class CheckBox extends RedButton {
   protected void layout() {
     super.layout();
 
-    float margin = (height - text.baseLine()) / 2;
+    // CheckBox left-aligns its label and puts the tick icon on the right,
+    // so the label must also leave room for the icon (super.layout() only
+    // accounts for the full button width). Re-fit the label to the space
+    // between the left margin and the icon.
+    text.scale.set(1f, 1f);
+    float margin = (height - text.baseLine()) / 2f;
+    float iconX = x + width - margin - icon.width;
+    float maxTextWidth = Math.max(1f, iconX - (x + margin) - 2f);
+    if (text.width() > maxTextWidth && text.width() > 0) {
+      float s = Math.max(0.55f, maxTextWidth / text.width());
+      text.scale.set(s, s);
+      margin = (height - text.baseLine()) / 2f;
+      iconX = x + width - margin - icon.width;
+    }
 
     text.x = x + margin;
     text.y = y + margin;
     PixelScene.align(text);
 
-    margin = (height - icon.height) / 2;
-
-    icon.x = x + width - margin - icon.width;
-    icon.y = y + margin;
+    icon.x = iconX;
+    icon.y = y + (height - icon.height) / 2f;
     PixelScene.align(icon);
   }
 

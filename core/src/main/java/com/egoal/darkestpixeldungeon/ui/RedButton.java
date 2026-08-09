@@ -64,8 +64,17 @@ public class RedButton extends Button {
     bg.y = y;
     bg.size(width, height);
 
-    text.x = x + (width - text.width()) / 2;
-    text.y = y + (height - text.baseLine()) / 2;
+    // Fit label inside the button: shrink font scale if the text is wider
+    // than the available width so it never overflows and overlaps siblings.
+    text.scale.set(1f, 1f);
+    float maxTextWidth = Math.max(1f, width - 4f);
+    if (text.width() > maxTextWidth && text.width() > 0) {
+      float s = Math.max(0.55f, maxTextWidth / text.width());
+      text.scale.set(s, s);
+    }
+
+    text.x = x + (width - text.width()) / 2f;
+    text.y = y + (height - text.baseLine()) / 2f;
     PixelScene.align(text);
 
     if (icon != null) {

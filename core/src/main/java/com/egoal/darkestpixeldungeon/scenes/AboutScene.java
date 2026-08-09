@@ -45,13 +45,13 @@ public class AboutScene extends PixelScene {
 
   private static final String LNK_DPD = "altomediaindonesia@gmail.com";
 
-  private static final String TTL_SHPX = "Shattered Pixel Dungeon";
+  private static final String TTL_SHPX = "Berdasarkan Shattered Pixel Dungeon";
 
-  private static final String TTL_WATA = "Pixel Dungeon";
+  private static final String TTL_WATA = "dan Pixel Dungeon";
 
-  private static final String TTL_THANKS = "Some sound tracks borrowed from " +
-          "(and thanks to): ";
-  private static final String TTL_YA = "Yet Another Pixel Dungeon";
+  private static final String TTL_THANKS = "Lokalisasi Bahasa Indonesia: " +
+          "ALTOMEDIA";
+  private static final String TTL_YA = "© ALTOMEDIA";
 
   @Override
   public void create() {

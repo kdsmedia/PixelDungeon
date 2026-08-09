@@ -262,7 +262,17 @@ public class TitleScene extends PixelScene {
       align(image);
 
       label.x = image.x + image.width + 2;
-      label.y = image.y + FONT_SIZE / 2;
+      label.y = y + (BTN_HEIGHT - label.baseLine()) / 2f;
+
+      // Shrink the label so it never extends past the button's right edge
+      // (prevents overlap with the neighbouring dashboard button).
+      label.scale.set(1f, 1f);
+      float maxLabelWidth = Math.max(1f, x + width - label.x - 2f);
+      if (label.width() > maxLabelWidth && label.width() > 0) {
+        float s = Math.max(0.55f, maxLabelWidth / label.width());
+        label.scale.set(s, s);
+        label.y = y + (BTN_HEIGHT - label.baseLine()) / 2f;
+      }
       align(label);
     }
 
