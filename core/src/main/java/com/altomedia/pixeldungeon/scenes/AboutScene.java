@@ -73,7 +73,7 @@ public class AboutScene extends PixelScene {
     new Flare(7, 64.f).color(Window.DPD_COLOR, true).show(lix, 0)
             .angularSpeed = +30;
 
-    RenderedText dpdTitle = renderText(TTL_DPD, 8);
+    RenderedText dpdTitle = renderText(TTL_DPD, FONT_SIZE_TITLE);
     dpdTitle.hardlight(Window.DPD_COLOR);    // set the font color
     add(dpdTitle);
     dpdTitle.x = (colWidth - dpdTitle.width()) / 2;
@@ -121,7 +121,7 @@ public class AboutScene extends PixelScene {
 
     new Flare(7, 64).color(0x225511, true).show(shpx, 0).angularSpeed = +10;
 
-    RenderedText shpxtitle = renderText(TTL_SHPX, 8);
+    RenderedText shpxtitle = renderText(TTL_SHPX, FONT_SIZE_TITLE);
     shpxtitle.hardlight(Window.SHPX_COLOR);
     add(shpxtitle);
 
@@ -140,7 +140,7 @@ public class AboutScene extends PixelScene {
 
     new Flare(7, 64).color(0x112233, true).show(wata, 0).angularSpeed = +10;
 
-    RenderedText wataTitle = renderText(TTL_WATA, 8);
+    RenderedText wataTitle = renderText(TTL_WATA, FONT_SIZE_TITLE);
     wataTitle.hardlight(Window.TITLE_COLOR);
     add(wataTitle);
 
@@ -159,7 +159,7 @@ public class AboutScene extends PixelScene {
     align(thanksTitle);
 
     // yet another pixel dungeon
-    RenderedText yaTitle = renderText(TTL_YA, 8);
+    RenderedText yaTitle = renderText(TTL_YA, FONT_SIZE_TITLE);
     yaTitle.hardlight(Window.TITLE_COLOR);
     add(yaTitle);
 

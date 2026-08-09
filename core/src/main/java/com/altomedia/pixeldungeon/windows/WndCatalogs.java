@@ -187,7 +187,7 @@ public class WndCatalogs extends WndTabbed {
       sprite = new ItemSprite();
       add(sprite);
 
-      label = PixelScene.renderMultiline(7);
+      label = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY);
       add(label);
 
       line = new ColorBlock(1, 1, 0xFF222222);

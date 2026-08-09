@@ -12,7 +12,7 @@ import com.altomedia.pixeldungeon.ui.Window
 
 class WndMasterSubclass(way1: HeroSubClass, way2: HeroSubClass) : Window() {
     init {
-        val rtm = PixelScene.renderMultiline(6)
+        val rtm = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY)
         rtm.text(M.L(this, "message") + "\n\n" + way1.desc() + "\n\n" + way2.desc(), WIDTH.toInt())
         rtm.setPos(0f, 0f)
         add(rtm)

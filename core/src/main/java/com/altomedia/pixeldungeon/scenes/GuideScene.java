@@ -161,7 +161,7 @@ public class GuideScene extends PixelScene {
 
     @Override
     protected void createChildren() {
-      feature = PixelScene.renderMultiline(6);
+      feature = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY);
       add(feature);
 
       line = new ColorBlock(1, 1, 0xFF222222);

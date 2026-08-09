@@ -126,7 +126,7 @@ class WndClass(private val cl: HeroClass) : WndTabbed() {
                 HeroClass.SORCERESS -> HeroSubClass.STARGAZER.desc() + "\n\n" + HeroSubClass.WITCH.desc()
             }
 
-            val text = PixelScene.renderMultiline(6)
+            val text = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY)
             text.text(message, WIDTH - MARGIN * 2)
             text.setPos(MARGIN.toFloat(), MARGIN.toFloat())
             add(text)

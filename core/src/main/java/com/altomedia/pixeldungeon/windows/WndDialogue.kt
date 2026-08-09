@@ -29,7 +29,7 @@ abstract class WndDialogue(image: Image?, text: String, what: String, vararg opt
             add(title)
             top = title.bottom() + MARGIN
         } else {
-            val tf = PixelScene.renderMultiline(text, 9).apply {
+            val tf = PixelScene.renderMultiline(text, PixelScene.FONT_SIZE_TITLE).apply {
                 hardlight(TITLE_COLOR)
                 setPos(MARGIN, MARGIN)
                 maxWidth(innerWidth)

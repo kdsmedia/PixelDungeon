@@ -173,11 +173,11 @@ class WndHero : WndTabbed() {
 
         private fun statSlot(label: String, value: String) {
 
-            var txt = PixelScene.renderText(label, 8)
+            var txt = PixelScene.renderText(label, 7)
             txt.y = pos
             add(txt)
 
-            txt = PixelScene.renderText(value, 8)
+            txt = PixelScene.renderText(value, 7)
             txt.x = WIDTH * 0.6f
             txt.y = pos
             PixelScene.align(txt)
@@ -223,7 +223,7 @@ class WndHero : WndTabbed() {
                 icon.y = this.y
                 add(icon)
 
-                txt = PixelScene.renderText(buff.toString(), 8)
+                txt = PixelScene.renderText(buff.toString(), 7)
                 txt.x = icon.width + GAP2
                 txt.y = this.y + (icon.height - txt.baseLine()).toInt() / 2
                 add(txt)
@@ -307,7 +307,7 @@ class WndHero : WndTabbed() {
         }
 
         private fun addLine(top: Float, line: String): Float {
-            val lbl = PixelScene.renderText(line, 6)
+            val lbl = PixelScene.renderText(line, 5)
             lbl.y = top
             add(lbl)
 

@@ -48,7 +48,7 @@ public class WndTitledMessage extends Window {
     titlebar.setRect(0, 0, width, 0);
     add(titlebar);
 
-    RenderedTextMultiline text = PixelScene.renderMultiline(6);
+    RenderedTextMultiline text = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY);
     text.text(message, width);
     text.setPos(titlebar.left(), titlebar.bottom() + GAP);
     add(text);

@@ -46,7 +46,7 @@ public class WndChooseWay extends Window {
     titlebar.setRect(0, 0, WIDTH, 0);
     add(titlebar);
 
-    RenderedTextMultiline hl = PixelScene.renderMultiline(6);
+    RenderedTextMultiline hl = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY);
     hl.text(way1.desc() + "\n\n" + way2.desc() + "\n\n" + Messages.get(this,
             "message"), WIDTH);
     hl.setPos(titlebar.left(), titlebar.bottom() + GAP);

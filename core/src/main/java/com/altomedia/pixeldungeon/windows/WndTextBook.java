@@ -37,7 +37,7 @@ public class WndTextBook extends Window {
     title_.setPos((WIDTH - (int) (title_.width())) / 2, 2);
     add(title_);
 
-    content_ = PixelScene.renderMultiline(6);
+    content_ = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY);
     content_.maxWidth(WIDTH - MARGIN * 2);
     content_.setPos(MARGIN, title_.bottom() + 4);
     add(content_);

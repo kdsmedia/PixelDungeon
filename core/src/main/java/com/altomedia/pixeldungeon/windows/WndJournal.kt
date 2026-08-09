@@ -115,7 +115,7 @@ class WndJournal : Window() {
         }
 
         override fun createChildren() {
-            feature = PixelScene.renderMultiline(7)
+            feature = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY)
             add(feature)
 
             depth = BitmapText(PixelScene.pixelFont)

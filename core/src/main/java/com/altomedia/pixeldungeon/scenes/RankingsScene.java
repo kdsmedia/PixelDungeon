@@ -107,7 +107,7 @@ public class RankingsScene extends PixelScene {
       }
 
       if (Rankings.INSTANCE.totalNumber >= Rankings.TABLE_SIZE) {
-        RenderedText label = renderText(Messages.get(this, "total") + " ", 8);
+        RenderedText label = renderText(Messages.get(this, "total") + " ", FONT_SIZE_TITLE);
         label.hardlight(0xCCCCCC);
         add(label);
 
@@ -116,7 +116,7 @@ public class RankingsScene extends PixelScene {
         won.hardlight(Window.SHPX_COLOR);
         add(won);
 
-        RenderedText total = renderText("/" + Rankings.INSTANCE.totalNumber, 8);
+        RenderedText total = renderText("/" + Rankings.INSTANCE.totalNumber, FONT_SIZE_TITLE);
         total.hardlight(0xCCCCCC);
         total.x = (w - total.width()) / 2;
         total.y = top + pos * rowHeight + GAP;
@@ -136,7 +136,7 @@ public class RankingsScene extends PixelScene {
 
     } else {
 
-      RenderedText noRec = renderText(Messages.get(this, "no_games"), 8);
+      RenderedText noRec = renderText(Messages.get(this, "no_games"), FONT_SIZE_TITLE);
       noRec.hardlight(0xCCCCCC);
       noRec.x = (w - noRec.width()) / 2;
       noRec.y = (h - noRec.height()) / 2;
@@ -245,7 +245,7 @@ public class RankingsScene extends PixelScene {
       position.alpha(0.8f);
       add(position);
 
-      desc = renderMultiline(7);
+      desc = renderMultiline(FONT_SIZE_BODY);
       add(desc);
 
       depth = new BitmapText(pixelFont);

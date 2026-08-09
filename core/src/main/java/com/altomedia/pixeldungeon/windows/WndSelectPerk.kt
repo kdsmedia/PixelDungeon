@@ -41,7 +41,7 @@ class WndSelectPerk(title: String, vararg perks: Perk) : Window() {
         }
         pos += BUTTON_SIZE + MARGIN
 
-        description = PixelScene.renderMultiline(6)
+        description = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY)
         description.maxWidth(width - MARGIN.toInt() * 2)
         description.setPos(MARGIN, pos + 2f)
         add(description)

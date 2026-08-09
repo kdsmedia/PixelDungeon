@@ -85,7 +85,7 @@ public class WndInfoCell extends Window {
     titlebar.setRect(0, 0, WIDTH, 0);
     add(titlebar);
 
-    RenderedTextMultiline info = PixelScene.renderMultiline(6);
+    RenderedTextMultiline info = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY);
     add(info);
 
     for (Blob blob : Dungeon.level.getBlobs().values()) {
