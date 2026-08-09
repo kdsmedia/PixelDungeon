@@ -45,7 +45,7 @@ public class WndList extends Window {
         pos += GAP;
       }
 
-      RenderedText dot = PixelScene.renderText("-", 6);
+      RenderedText dot = PixelScene.renderText("-", PixelScene.FONT_SIZE_SMALL);
       dot.x = MARGIN;
       dot.y = pos;
       if (dotWidth == 0) {

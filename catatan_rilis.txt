@@ -13,7 +13,7 @@ BUILD TERBARU
 Versi Aplikasi : 0.4.1 (versionCode 34)
 Package        : com.altomedia.pixeldungeon
 Tanggal Build  : 2026-08-09
-Commit         : perbaiki portrait terpotong / menu bawah tak terakses
+Commit         : perkecil lagi ukuran teks semua menu (putaran ke-3)
 Status         : [RILIS] ditandatangani keystore ALTOMEDIA
 
 Berkas output:
@@ -21,22 +21,35 @@ Berkas output:
   - ALTOMEDIA/build/darkestpixeldungeon-release.aab  (7.4 MB)
 
 Perubahan pada build ini:
-  [PERBAIKAN] Portrait bagian bawah terpotong, menu tak terakses:
-    - Akar masalah: targetSdk 35 (Android 15) memberlakukan mode
-      edge-to-edge, sehingga window digambar di belakang navigation
-      bar sistem. Toolbar/menu bawah tertutup nav bar.
-    - Opt-out edge-to-edge: setDecorFitsSystemWindows(true) di
-      onCreate (API 30+) agar nav bar memesan tempat sendiri dan
-      UI bawah selalu terlihat/terakses
-    - Modernisasi updateImmersiveMode: pakai WindowInsetsController
-      (API 30+) untuk benar-benar menyembunyikan/menampilkan system
-      bars (setSystemUiVisibility sudah deprecated/diabaikan di
-      API 30+). Immersive aktif = fullscreen, non-immersive = nav
-      bar memesan tempat.
+  [PERBAIKAN] Perkecil lagi ukuran teks di semua menu (putaran ke-3):
+    - Konstanta font di PixelScene diturunkan lagi:
+        BODY   5 -> 4
+        BUTTON 6 -> 5
+        SMALL  4 -> 3
+        TITLE  7 -> 6
+    - Ganti SEMUA ukuran teks hardcoded (6/7/8/9) dengan konstanta
+      di 20+ file agar konsisten dan ikut mengecil. Sekarang tidak
+      ada lagi renderText/renderMultiline pakai angka literal.
+      File yang diubah antara lain:
+        IconTitle, TitleScene, WndHero, WndRanking, WndList,
+        ErrorReportScene, GameLog, AboutScene, AmuletScene,
+        ChangesScene, WelcomeScene, WndMessage, WndClass,
+        WndInfoBuff, WndBadge, WndTextBook, WndStory,
+        WndWandmaker, WndInfoItem, WndDialogue, WndSelectPerk,
+        WndItem
 
 ------------------------------------------------------------------
 RIWAYAT BUILD (sebelumnya)
 ------------------------------------------------------------------
+Build #5 (2026-08-09, commit 4a0a8a3):
+  - [PERBAIKAN] Portrait bagian bawah terpotong, menu tak terakses:
+    - Akar masalah: targetSdk 35 (Android 15) memberlakukan mode
+      edge-to-edge, window digambar di belakang navigation bar.
+    - Opt-out edge-to-edge: setDecorFitsSystemWindows(true) di
+      onCreate (API 30+) agar nav bar memesan tempat sendiri.
+    - Modernisasi updateImmersiveMode pakai WindowInsetsController
+      (API 30+) karena setSystemUiVisibility sudah deprecated.
+
 Build #4 (2026-08-09, commit 0b00870):
   - [PERBAIKAN] Hapus bahasa Cina & jadikan Indonesia default:
     - Hapus enum CHINESE dari Languages.java beserta credit
@@ -52,12 +65,7 @@ Build #3 (2026-08-09, commit 9fe2b00):
   - [PERBAIKAN] Perkecil lagi ukuran teks tombol & menu:
     - Konstanta font di PixelScene diturunkan:
         BUTTON 7 -> 6, TITLE 8 -> 7, BODY 6 -> 5, SMALL 5 -> 4
-    - Ganti sisa ukuran teks hardcoded (8/7/6) dengan konstanta
-      agar konsisten di: IconTitle, TitleScene, AboutScene,
-      RankingsScene, WndDialogue, WndHero, WndRanking, WndJournal,
-      WndCatalogs, WndTitledMessage, WndClass, WndInfoCell,
-      WndTextBook, WndMasterSubclass, WndChooseWay, WndSelectPerk,
-      GuideScene, WelcomeScene, BadgesList
+    - Ganti sisa ukuran teks hardcoded (8/7/6) dengan konstanta.
 
 Build #2 (2026-08-09, commit e15b2c9..fd82168):
   - [RILIS] Package diganti: com.egoal.darkestpixeldungeon

@@ -123,7 +123,7 @@ public class WelcomeScene extends PixelScene {
       add(okay);
     }
 
-    RenderedTextMultiline text = renderMultiline(6);
+    RenderedTextMultiline text = renderMultiline(PixelScene.FONT_SIZE_BODY);
     String message;
 
     if (previousVersion == 0)

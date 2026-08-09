@@ -63,7 +63,7 @@ public class WndItem extends Window {
       titlebar.color(ItemSlot.DEGRADED);
     }
 
-    RenderedTextMultiline info = PixelScene.renderMultiline(item.info(), 6);
+    RenderedTextMultiline info = PixelScene.renderMultiline(item.info(), PixelScene.FONT_SIZE_BODY);
     info.maxWidth(width);
     info.setPos(titlebar.left(), titlebar.bottom() + GAP);
     add(info);

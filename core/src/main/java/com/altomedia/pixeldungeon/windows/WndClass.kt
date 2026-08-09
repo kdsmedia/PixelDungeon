@@ -95,7 +95,7 @@ class WndClass(private val cl: HeroClass) : WndTabbed() {
                 }
                 add(dot)
 
-                val item = PixelScene.renderMultiline(items[i], 6)
+                val item = PixelScene.renderMultiline(items[i], PixelScene.FONT_SIZE_BODY)
                 item.maxWidth((WIDTH.toFloat() - (MARGIN * 2).toFloat() - dotWidth).toInt())
                 item.setPos(dot.x + dotWidth, pos)
                 add(item)

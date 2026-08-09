@@ -50,7 +50,7 @@ public class AmuletScene extends PixelScene {
 
     RenderedTextMultiline text = null;
     if (!noText) {
-      text = renderMultiline(Messages.get(this, "text"), 8);
+      text = renderMultiline(Messages.get(this, "text"), PixelScene.FONT_SIZE_BODY);
       text.maxWidth(WIDTH);
       add(text);
     }

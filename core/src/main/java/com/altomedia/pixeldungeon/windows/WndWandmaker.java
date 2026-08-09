@@ -60,7 +60,7 @@ public class WndWandmaker extends Window {
       msg = Messages.get(this, "berry");
     }
 
-    RenderedTextMultiline message = PixelScene.renderMultiline(msg, 6);
+    RenderedTextMultiline message = PixelScene.renderMultiline(msg, PixelScene.FONT_SIZE_BODY);
     message.maxWidth(WIDTH);
     message.setPos(0, titlebar.bottom() + GAP);
     add(message);

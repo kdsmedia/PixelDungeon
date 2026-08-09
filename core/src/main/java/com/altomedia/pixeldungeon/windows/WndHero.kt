@@ -173,11 +173,11 @@ class WndHero : WndTabbed() {
 
         private fun statSlot(label: String, value: String) {
 
-            var txt = PixelScene.renderText(label, 7)
+            var txt = PixelScene.renderText(label, PixelScene.FONT_SIZE_BODY)
             txt.y = pos
             add(txt)
 
-            txt = PixelScene.renderText(value, 7)
+            txt = PixelScene.renderText(value, PixelScene.FONT_SIZE_BODY)
             txt.x = WIDTH * 0.6f
             txt.y = pos
             PixelScene.align(txt)
@@ -223,7 +223,7 @@ class WndHero : WndTabbed() {
                 icon.y = this.y
                 add(icon)
 
-                txt = PixelScene.renderText(buff.toString(), 7)
+                txt = PixelScene.renderText(buff.toString(), PixelScene.FONT_SIZE_BODY)
                 txt.x = icon.width + GAP2
                 txt.y = this.y + (icon.height - txt.baseLine()).toInt() / 2
                 add(txt)
@@ -271,7 +271,7 @@ class WndHero : WndTabbed() {
         private fun layoutResistances(top: Float): Float {
             var thetop = top
             val ICON_SIZE = 8
-            val FONT_SIZE = 6
+            val FONT_SIZE = PixelScene.FONT_SIZE_BUTTON
             val GAP = 3f
 
             resistIcons = TextureCache.get(Assets.DPD_CONS_ICONS)
@@ -307,7 +307,7 @@ class WndHero : WndTabbed() {
         }
 
         private fun addLine(top: Float, line: String): Float {
-            val lbl = PixelScene.renderText(line, 5)
+            val lbl = PixelScene.renderText(line, PixelScene.FONT_SIZE_BODY)
             lbl.y = top
             add(lbl)
 

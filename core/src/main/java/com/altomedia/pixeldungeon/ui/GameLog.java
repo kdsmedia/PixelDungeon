@@ -49,7 +49,7 @@ public class GameLog extends Component implements Signal.Listener<String> {
 
   private void recreateLines() {
     for (Entry entry : entries) {
-      lastEntry = PixelScene.renderMultiline(entry.text, 6);
+      lastEntry = PixelScene.renderMultiline(entry.text, PixelScene.FONT_SIZE_BODY);
       lastEntry.hardlight(lastColor = entry.color);
       add(lastEntry);
     }
@@ -93,7 +93,7 @@ public class GameLog extends Component implements Signal.Listener<String> {
 
     } else {
 
-      lastEntry = PixelScene.renderMultiline(text, 6);
+      lastEntry = PixelScene.renderMultiline(text, PixelScene.FONT_SIZE_BODY);
       lastEntry.hardlight(color);
       lastColor = color;
       add(lastEntry);

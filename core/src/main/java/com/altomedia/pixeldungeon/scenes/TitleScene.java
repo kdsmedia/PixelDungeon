@@ -227,7 +227,7 @@ public class TitleScene extends PixelScene {
     public static final float BTN_HEIGHT = 24;
 
     private static final int IMAGE_SIZE = 16;
-    private static final int FONT_SIZE = 7;
+    private static final int FONT_SIZE = PixelScene.FONT_SIZE_TITLE;
 
     private Image image;
     private RenderedText label;

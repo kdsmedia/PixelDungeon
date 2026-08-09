@@ -48,18 +48,18 @@ class ErrorReportScene : PixelScene() {
         val versionstr = if (Dungeon.VERSION_STRING.isEmpty()) DarkestPixelDungeon.version
         else Dungeon.VERSION_STRING
         
-        val version = renderText(versionstr, 6)
+        val version = renderText(versionstr, PixelScene.FONT_SIZE_BUTTON)
         content.add(version)
 
         // warning
-        val warning = renderMultiline(M.L(this, "warning"), 6)
+        val warning = renderMultiline(M.L(this, "warning"), PixelScene.FONT_SIZE_BODY)
         warning.maxWidth(panel.innerWidth().toInt())
         content.add(warning)
         warning.setPos(version.x, version.y + version.height() + 4f)
 
         var y = warning.bottom() + 8f
         for (line in TopExceptionHandler.LoadErrorStrings()!!) {
-            val log = renderMultiline(line, 6)
+            val log = renderMultiline(line, PixelScene.FONT_SIZE_BODY)
             content.add(log)
             log.maxWidth(panel.innerWidth().toInt())
             log.setPos(warning.left(), y)

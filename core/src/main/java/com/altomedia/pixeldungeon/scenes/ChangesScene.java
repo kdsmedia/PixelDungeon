@@ -89,7 +89,7 @@ public class ChangesScene extends PixelScene {
     content.clear();
 
     String warning = Messages.get(this, "warning");
-    RenderedTextMultiline txtWarning = renderMultiline(warning, 6);
+    RenderedTextMultiline txtWarning = renderMultiline(warning, PixelScene.FONT_SIZE_BODY);
     txtWarning.maxWidth((int) panel.innerWidth());
     content.add(txtWarning);
 

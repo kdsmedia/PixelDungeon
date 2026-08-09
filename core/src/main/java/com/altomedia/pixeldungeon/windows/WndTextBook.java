@@ -31,7 +31,7 @@ public class WndTextBook extends Window {
 
     book_ = book;
 
-    title_ = PixelScene.renderMultiline(book.bookName(), 6);
+    title_ = PixelScene.renderMultiline(book.bookName(), PixelScene.FONT_SIZE_BODY);
     title_.maxWidth(WIDTH - MARGIN * 2);
     title_.invert();
     title_.setPos((WIDTH - (int) (title_.width())) / 2, 2);
@@ -42,7 +42,7 @@ public class WndTextBook extends Window {
     content_.setPos(MARGIN, title_.bottom() + 4);
     add(content_);
 
-    pageinfo_ = PixelScene.renderMultiline("0/0", 6);
+    pageinfo_ = PixelScene.renderMultiline("0/0", PixelScene.FONT_SIZE_BODY);
     pageinfo_.invert();
     pageinfo_.maxWidth(WIDTH);
     pageinfo_.setPos((WIDTH - (int) (pageinfo_.width())) / 2, HEIGHT - 6);

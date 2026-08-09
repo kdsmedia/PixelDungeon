@@ -88,7 +88,7 @@ public class WndInfoItem extends Window {
     titlebar.setRect(0, 0, width, 0);
     add(titlebar);
 
-    RenderedTextMultiline txtInfo = PixelScene.renderMultiline(info, 6);
+    RenderedTextMultiline txtInfo = PixelScene.renderMultiline(info, PixelScene.FONT_SIZE_BODY);
     txtInfo.maxWidth(width);
     txtInfo.setPos(titlebar.left(), titlebar.bottom() + GAP);
     add(txtInfo);

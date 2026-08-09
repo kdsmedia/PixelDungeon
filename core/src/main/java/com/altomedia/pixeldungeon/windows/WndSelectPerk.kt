@@ -26,7 +26,7 @@ class WndSelectPerk(title: String, vararg perks: Perk) : Window() {
 
         val width = (perks.size * BUTTON_SIZE + (perks.size + 1) * MARGIN).toInt()
 
-        val titleLine = PixelScene.renderMultiline(title.capitalize(), 9)
+        val titleLine = PixelScene.renderMultiline(title.capitalize(), PixelScene.FONT_SIZE_TITLE)
         titleLine.hardlight(TITLE_COLOR)
         titleLine.setPos(MARGIN, MARGIN)
         titleLine.maxWidth(width - MARGIN.toInt() * 2)

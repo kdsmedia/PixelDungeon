@@ -32,7 +32,7 @@ import com.watabou.noosa.ui.Component;
 
 public class IconTitle extends Component {
 
-  private static final float FONT_SIZE = 7;
+  private static final float FONT_SIZE = PixelScene.FONT_SIZE_TITLE;
 
   private static final float GAP = 2;
 

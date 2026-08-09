@@ -41,7 +41,7 @@ public class WndBadge extends Window {
     add(icon);
 
     //TODO: this used to be centered, should probably figure that out.
-    RenderedTextMultiline info = PixelScene.renderMultiline(badge.desc(), 8);
+    RenderedTextMultiline info = PixelScene.renderMultiline(badge.desc(), PixelScene.FONT_SIZE_BODY);
     info.maxWidth(WIDTH - MARGIN * 2);
     PixelScene.align(info);
     add(info);

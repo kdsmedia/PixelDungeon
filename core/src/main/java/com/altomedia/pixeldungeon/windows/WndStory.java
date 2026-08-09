@@ -67,7 +67,7 @@ public class WndStory extends Window {
   public WndStory(String text) {
     super(0, 0, Chrome.get(Chrome.Type.SCROLL));
 
-    tf = PixelScene.renderMultiline(text, 7);
+    tf = PixelScene.renderMultiline(text, PixelScene.FONT_SIZE_BODY);
     tf.maxWidth(DarkestPixelDungeon.landscape() ?
             WIDTH_L - MARGIN * 2 :
             WIDTH_P - MARGIN * 2);

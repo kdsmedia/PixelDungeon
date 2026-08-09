@@ -39,7 +39,7 @@ abstract class WndDialogue(image: Image?, text: String, what: String, vararg opt
         }
 
         // message
-        val rtm = PixelScene.renderMultiline(what, 6).apply {
+        val rtm = PixelScene.renderMultiline(what, PixelScene.FONT_SIZE_BODY).apply {
             maxWidth(innerWidth)
             setPos(MARGIN, top)
         }
@@ -90,7 +90,7 @@ abstract class WndDialogue(image: Image?, text: String, what: String, vararg opt
 
     open class OptionButton(line: String) : Button() {
         private val background: NinePatch = Chrome.get(Chrome.Type.DIALOG_OPTION)
-        private val text: RenderedTextMultiline = PixelScene.renderMultiline(line, 6)
+        private val text: RenderedTextMultiline = PixelScene.renderMultiline(line, PixelScene.FONT_SIZE_BODY)
         private val dot = PixelScene.createText("-", 6f)
 
         init {

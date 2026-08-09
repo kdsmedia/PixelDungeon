@@ -80,7 +80,7 @@ public class AboutScene extends PixelScene {
     dpdTitle.y = lix.y + lix.height + 5;
     align(dpdTitle);
 
-    RenderedTextMultiline dpdText = renderMultiline(TXT_DPD, 8);
+    RenderedTextMultiline dpdText = renderMultiline(TXT_DPD, PixelScene.FONT_SIZE_BODY);
     dpdText.maxWidth((int) Math.min(colWidth, 120));
     add(dpdText);
     dpdText.setPos((colWidth - dpdText.width()) / 2, dpdTitle.y + dpdTitle
@@ -88,7 +88,7 @@ public class AboutScene extends PixelScene {
     dpdText.hardlight(Window.DPD_COLOR);
     align(dpdText);
 
-    RenderedTextMultiline dpdlink = renderMultiline(LNK_DPD, 8);
+    RenderedTextMultiline dpdlink = renderMultiline(LNK_DPD, PixelScene.FONT_SIZE_BODY);
     dpdlink.maxWidth(dpdText.maxWidth());
     dpdlink.hardlight(Window.DPD_COLOR);
     add(dpdlink);
@@ -149,7 +149,7 @@ public class AboutScene extends PixelScene {
     align(wataTitle);
 
     // assets pick cite
-    RenderedTextMultiline thanksTitle = renderMultiline(TTL_THANKS, 6);
+    RenderedTextMultiline thanksTitle = renderMultiline(TTL_THANKS, PixelScene.FONT_SIZE_BODY);
     thanksTitle.maxWidth((int) Math.min(colWidth, 120));
     thanksTitle.hardlight(Window.DPD_COLOR);
     add(thanksTitle);
