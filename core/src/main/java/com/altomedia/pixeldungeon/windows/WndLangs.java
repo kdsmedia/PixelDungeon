@@ -125,14 +125,7 @@ public class WndLangs extends Window {
     PixelScene.align(title);
     add(title);
 
-    if (currLang == Languages.CHINESE) {
-
-      RenderedTextMultiline info = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY);
-      info.text(Messages.get(this, "do_not_change"), width - textLeft);
-      info.setPos(textLeft, title.height() + 2);
-      add(info);
-
-    } else {
+    {
       RenderedTextMultiline info = PixelScene.renderMultiline(PixelScene.FONT_SIZE_BODY);
       switch (currLang.status()) {
         case REVIEWED:

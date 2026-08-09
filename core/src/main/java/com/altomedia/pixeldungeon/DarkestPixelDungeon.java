@@ -461,12 +461,7 @@ public class DarkestPixelDungeon extends Game {
   }
 
   public static boolean classicFont() {
-//    return Preferences.INSTANCE.getBoolean(Preferences.KEY_CLASSICFONT,
-//            (language() != Languages.KOREAN && language() != Languages
-//                    .CHINESE));
-    return Preferences.INSTANCE.getBoolean(Preferences.KEY_CLASSICFONT, true)
-            ; //,
-//            language() != Languages.CHINESE);
+    return Preferences.INSTANCE.getBoolean(Preferences.KEY_CLASSICFONT, true);
   }
 
   public static void lastClass(int value) {
