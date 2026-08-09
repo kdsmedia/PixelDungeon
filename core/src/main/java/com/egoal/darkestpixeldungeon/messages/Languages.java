@@ -37,6 +37,8 @@ public enum Languages {
   CHINESE("中文", "zh", Status.REVIEWED, new String[]{"Jinkeloid(zdx00793)"},
           new String[]{"931451545", "HoofBumpBlurryface", "Lery", "Lyn-0401",
                   "ShatteredFlameBlast", "Hmdzl001", "Tempest102"}),
+  INDONESIAN("Bahasa Indonesia", "id", Status.REVIEWED,
+          new String[]{"ALTOMEDIA"}, new String[]{"ALTOMEDIA"}),
 //  FINNISH("suomi", "fi", Status.REVIEWED, new String[]{"TenguTheKnight"}, 
 // null),
 //

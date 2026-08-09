@@ -447,11 +447,7 @@ public class DarkestPixelDungeon extends Game {
   public static Languages language() {
     String code = Preferences.INSTANCE.getString(Preferences.KEY_LANG, null);
     if (code == null) {
-      Languages lang = Languages.matchLocale(Locale.getDefault());
-      if (lang.status() == Languages.Status.REVIEWED)
-        return lang;
-      else
-        return Languages.ENGLISH;
+      return Languages.INDONESIAN;
     } else return Languages.matchCode(code);
   }
 

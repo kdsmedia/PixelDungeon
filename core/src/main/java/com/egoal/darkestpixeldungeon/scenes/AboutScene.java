@@ -41,9 +41,9 @@ public class AboutScene extends PixelScene {
 
   private static final String TTL_DPD = "Darkest Pixel Dungeon";
 
-  private static final String TXT_DPD = "Design, Code, & Graphics: Egoal";
+  private static final String TXT_DPD = "Pemilik & Developer: ALTOMEDIA";
 
-  private static final String LNK_DPD = "github.com/egoal";
+  private static final String LNK_DPD = "altomediaindonesia@gmail.com";
 
   private static final String TTL_SHPX = "Shattered Pixel Dungeon";
 
@@ -100,8 +100,8 @@ public class AboutScene extends PixelScene {
             dpdlink.width(), dpdlink.height()) {
       @Override
       protected void onClick(Touch touch) {
-        Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("https://" + LNK_DPD));
+        Intent intent = new Intent(Intent.ACTION_SENDTO,
+                Uri.parse("mailto:" + LNK_DPD));
         Game.instance.startActivity(intent);
       }
     };
