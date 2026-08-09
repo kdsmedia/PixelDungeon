@@ -190,14 +190,6 @@ public class DarkestPixelDungeon extends Game {
 
     Thread.setDefaultUncaughtExceptionHandler(new TopExceptionHandler(this));
 
-    // On Android 15 (API 35) targeting SDK 35, edge-to-edge is enforced and
-    // the app window is drawn behind the system navigation bar, which hides
-    // the bottom toolbar/menu. Opt out of edge-to-edge so the nav bar
-    // reserves its own space and the bottom UI stays accessible.
-    if (android.os.Build.VERSION.SDK_INT >= 30) {
-      instance.getWindow().setDecorFitsSystemWindows(true);
-    }
-
     updateImmersiveMode();
 
     DisplayMetrics metrics = new DisplayMetrics();
@@ -416,7 +408,13 @@ public class DarkestPixelDungeon extends Game {
   }
 
   public static boolean immersed() {
-    return Preferences.INSTANCE.getBoolean(Preferences.KEY_IMMERSIVE, false);
+    // Default to immersive (true) so the fullscreen game owns the whole
+    // screen: the system status bar and navigation bar are hidden instead of
+    // overlaying/clipping the top and bottom UI. This keeps the title bar
+    // (top) and toolbar/menu (bottom) fully visible and accessible on all
+    // devices, including tall phones where edge-to-edge would otherwise draw
+    // the nav bar on top of the bottom menu.
+    return Preferences.INSTANCE.getBoolean(Preferences.KEY_IMMERSIVE, true);
   }
 
   // *****************************

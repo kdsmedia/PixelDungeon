@@ -13,7 +13,7 @@ BUILD TERBARU
 Versi Aplikasi : 0.4.1 (versionCode 34)
 Package        : com.altomedia.pixeldungeon
 Tanggal Build  : 2026-08-09
-Commit         : perkecil lagi ukuran teks semua menu (putaran ke-3)
+Commit         : perbaiki UI terpotong atas & bawah: fullscreen immersive
 Status         : [RILIS] ditandatangani keystore ALTOMEDIA
 
 Berkas output:
@@ -21,34 +21,41 @@ Berkas output:
   - ALTOMEDIA/build/darkestpixeldungeon-release.aab  (7.4 MB)
 
 Perubahan pada build ini:
-  [PERBAIKAN] Perkecil lagi ukuran teks di semua menu (putaran ke-3):
-    - Konstanta font di PixelScene diturunkan lagi:
-        BODY   5 -> 4
-        BUTTON 6 -> 5
-        SMALL  4 -> 3
-        TITLE  7 -> 6
-    - Ganti SEMUA ukuran teks hardcoded (6/7/8/9) dengan konstanta
-      di 20+ file agar konsisten dan ikut mengecil. Sekarang tidak
-      ada lagi renderText/renderMultiline pakai angka literal.
-      File yang diubah antara lain:
-        IconTitle, TitleScene, WndHero, WndRanking, WndList,
-        ErrorReportScene, GameLog, AboutScene, AmuletScene,
-        ChangesScene, WelcomeScene, WndMessage, WndClass,
-        WndInfoBuff, WndBadge, WndTextBook, WndStory,
-        WndWandmaker, WndInfoItem, WndDialogue, WndSelectPerk,
-        WndItem
+  [PERBAIKAN] UI terpotong atas & bawah (koreksi fix sebelumnya):
+    - Fix sebelumnya (setDecorFitsSystemWindows=true) SALAH: itu
+      men-shrink window dari atas (status bar) DAN bawah (nav bar),
+      sehingga viewport virtual tidak pas dan UI terpotong dua sisi.
+    - Game ini adalah game FULLSCREEN. Solusi yang benar: sembunyikan
+      system bars, bukan memesan tempat, supaya game memakai seluruh
+      layar.
+    - Hapus setDecorFitsSystemWindows(true) dari onCreate.
+    - Jadikan immersive AKTIF secara default (immersed() default true):
+      * API 30+: setDecorFitsSystemWindows(false) +
+        WindowInsetsController.hide(statusBars|navigationBars) +
+        BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE -> surface memenuhi
+        seluruh layar, system bars disembunyikan (muncul transient
+        saat di-swipe). Status pane atas & toolbar bawah terlihat
+        penuh, tidak tertutup/terpotong.
+      * API 19-29: flag IMMERSIVE_STICKY lama, efek sama.
+    - Tidak ada perubahan resolusi/viewport; layar dipakai utuh.
 
 ------------------------------------------------------------------
 RIWAYAT BUILD (sebelumnya)
 ------------------------------------------------------------------
+Build #6 (2026-08-09, commit b70d53e):
+  - [PERBAIKAN] Perkecil lagi ukuran teks semua menu (putaran ke-3):
+    - Konstanta font: BODY 5->4, BUTTON 6->5, SMALL 4->3, TITLE 7->6
+    - Ganti SEMUA ukuran teks hardcoded (6/7/8/9) dengan konstanta
+      di 20+ file. Tidak ada lagi renderText/renderMultiline pakai
+      angka literal.
+
 Build #5 (2026-08-09, commit 4a0a8a3):
   - [PERBAIKAN] Portrait bagian bawah terpotong, menu tak terakses:
-    - Akar masalah: targetSdk 35 (Android 15) memberlakukan mode
-      edge-to-edge, window digambar di belakang navigation bar.
-    - Opt-out edge-to-edge: setDecorFitsSystemWindows(true) di
-      onCreate (API 30+) agar nav bar memesan tempat sendiri.
     - Modernisasi updateImmersiveMode pakai WindowInsetsController
       (API 30+) karena setSystemUiVisibility sudah deprecated.
+    - (Catatan: fix setDecorFitsSystemWindows(true) pada build ini
+      kemudian dibatalkan di build #7 karena menyebabkan UI terpotong
+      dua sisi.)
 
 Build #4 (2026-08-09, commit 0b00870):
   - [PERBAIKAN] Hapus bahasa Cina & jadikan Indonesia default:
@@ -63,9 +70,7 @@ Build #4 (2026-08-09, commit 0b00870):
 
 Build #3 (2026-08-09, commit 9fe2b00):
   - [PERBAIKAN] Perkecil lagi ukuran teks tombol & menu:
-    - Konstanta font di PixelScene diturunkan:
-        BUTTON 7 -> 6, TITLE 8 -> 7, BODY 6 -> 5, SMALL 5 -> 4
-    - Ganti sisa ukuran teks hardcoded (8/7/6) dengan konstanta.
+    - Konstanta font: BUTTON 7->6, TITLE 8->7, BODY 6->5, SMALL 5->4
 
 Build #2 (2026-08-09, commit e15b2c9..fd82168):
   - [RILIS] Package diganti: com.egoal.darkestpixeldungeon
