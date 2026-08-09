@@ -1,0 +1,54 @@
+==================================================================
+  CATATAN RILIS (RELEASE NOTES) — Darkest Pixel Dungeon
+  ALTOMEDIA | package: com.altomedia.pixeldungeon
+==================================================================
+
+Legenda status tiap build:
+  [RILIS]  = build final yang ditandatangani & siap distribusi
+  [PERBAIKAN] = koreksi/penyempurnaan sejak build sebelumnya
+
+------------------------------------------------------------------
+BUILD TERBARU
+------------------------------------------------------------------
+Versi Aplikasi : 0.4.1 (versionCode 34)
+Package        : com.altomedia.pixeldungeon
+Tanggal Build  : 2026-08-09
+Commit         : 9fe2b00 (Perkecil lagi ukuran teks tombol & menu)
+Status         : [RILIS] ditandatangani keystore ALTOMEDIA
+
+Berkas output:
+  - ALTOMEDIA/build/darkestpixeldungeon-release.apk  (7.8 MB)
+  - ALTOMEDIA/build/darkestpixeldungeon-release.aab  (7.5 MB)
+
+Perubahan pada build ini:
+  [PERBAIKAN] Perkecil ukuran teks tombol & menu:
+    - Konstanta font di PixelScene diturunkan:
+        BUTTON 7 -> 6, TITLE 8 -> 7, BODY 6 -> 5, SMALL 5 -> 4
+    - Ganti sisa ukuran teks hardcoded (8/7/6) dengan konstanta
+      agar konsisten di: IconTitle, TitleScene, AboutScene,
+      RankingsScene, WndDialogue, WndHero, WndRanking, WndJournal,
+      WndCatalogs, WndTitledMessage, WndClass, WndInfoCell,
+      WndTextBook, WndMasterSubclass, WndChooseWay, WndSelectPerk,
+      GuideScene, WelcomeScene, BadgesList
+    - Tombol (RedButton), menu (OptionSlider/CheckBox), judul window
+      & scene otomatis ikut mengecil; auto-shrink skala minimum 0.5
+      tetap aktif mencegah teks hancur/overflow.
+
+------------------------------------------------------------------
+RIWAYAT BUILD (sebelumnya)
+------------------------------------------------------------------
+Build sebelumnya (2026-08-09, commit e15b2c9..fd82168):
+  - [RILIS] Package diganti: com.egoal.darkestpixeldungeon
+            -> com.altomedia.pixeldungeon (812 file)
+  - [RILIS] Lokalisasi Bahasa Indonesia lengkap:
+            actors_id.properties (873 kunci)
+            items_id.properties (1178 kunci)
+  - [RILIS] Perkecil ukuran teks tombol & menu (putaran pertama)
+  - [PERBAIKAN] Bersihkan repo: hapus APK/AAB lama & file IDE Eclipse
+  - [PERBAIKAN] Rebrand NPC kucing "Egoal" -> "Lix" pada teks
+                user-facing (actors.properties & actors_id.properties)
+
+==================================================================
+Catatan: Setiap build baru akan menambahkan entri di bagian
+"BUILD TERBARU" dan memindahkan build sebelumnya ke "RIWAYAT BUILD".
+==================================================================
