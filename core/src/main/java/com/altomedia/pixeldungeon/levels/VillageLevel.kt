@@ -85,7 +85,7 @@ class VillageLevel : RegularLevel() {
     override fun nMobs(): Int = 0
 
     override fun createMobs() {
-        // egoal
+        // village
         putMobAt(CatEgoal::class.java, 15, 29)
 
         // old alchemist
