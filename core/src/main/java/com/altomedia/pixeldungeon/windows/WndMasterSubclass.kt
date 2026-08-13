@@ -17,7 +17,7 @@ class WndMasterSubclass(way1: HeroSubClass, way2: HeroSubClass) : Window() {
         rtm.setPos(0f, 0f)
         add(rtm)
 
-        val btnWay1 = object : RedButton(way1.title().toUpperCase()) {
+        val btnWay1 = object : RedButton(way1.title().uppercase()) {
             override fun onClick() {
                 hide()
                 HeroSubClass.Choose(Dungeon.hero!!, way1)
@@ -26,7 +26,7 @@ class WndMasterSubclass(way1: HeroSubClass, way2: HeroSubClass) : Window() {
         btnWay1.setRect(0f, rtm.bottom() + GAP, (WIDTH - GAP) / 2f, BTN_HEIGHT)
         add(btnWay1)
 
-        val btnWay2 = object : RedButton(way2.title().toUpperCase()) {
+        val btnWay2 = object : RedButton(way2.title().uppercase()) {
             override fun onClick() {
                 hide()
                 HeroSubClass.Choose(Dungeon.hero!!, way2)

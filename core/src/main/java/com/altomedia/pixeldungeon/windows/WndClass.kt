@@ -35,7 +35,7 @@ class WndClass(private val cl: HeroClass) : WndTabbed() {
         tabPerks = PerksTab()
         add(tabPerks)
 
-        var tab = RankingTab(cl.title().toUpperCase(), tabPerks)
+        var tab = RankingTab(cl.title().uppercase(), tabPerks)
         tab.setSize(TAB_WIDTH.toFloat(), tabHeight().toFloat())
         add(tab)
 

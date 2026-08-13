@@ -124,10 +124,10 @@ class WndHero : WndTabbed() {
             title.icon(HeroSprite.avatar(hero.heroClass, hero.tier()))
             if (hero.givenName() == hero.className())
                 title.label(Messages.get(this, "title", hero.lvl, hero.className())
-                        .toUpperCase(Locale.ENGLISH))
+                        .uppercase(Locale.ENGLISH))
             else
                 title.label((hero.givenName() + "\n" + Messages.get(this, "title",
-                        hero.lvl, hero.className())).toUpperCase(Locale.ENGLISH))
+                        hero.lvl, hero.className())).uppercase(Locale.ENGLISH))
             title.color(Window.SHPX_COLOR)
             title.setRect(0f, 0f, WIDTH / 2f, 0f)
             add(title)

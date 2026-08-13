@@ -323,7 +323,7 @@ class StartScene : PixelScene() {
             brightness = if (IsLocked(heroClass)) MIN_BRIGHTNESS else 1f
             updateBrightness()
 
-            name.text(heroClass.title().toUpperCase())
+            name.text(heroClass.title().uppercase())
             name.hardlight(if (Badges.isUnlocked(heroClass.masteryBadge()))
                 MASTERY_HIGHLIGHTED else BASIC_HIGHLIGHTED)
         }
