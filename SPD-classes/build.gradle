@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 android {
     namespace "com.watabou"
-    compileSdk 35
+    compileSdk 37
 
     defaultConfig {
         minSdk 21

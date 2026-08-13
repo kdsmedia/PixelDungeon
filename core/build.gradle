@@ -3,19 +3,19 @@ apply plugin: 'kotlin-android'
 
 // Release signing config: reads credentials from gradle.properties or env,
 // falls back to the project-local keystore when not provided.
-def keystoreFile = rootProject.file("pixeldungeon.jks")
+def keystoreFile = rootProject.file("ALTOMEDIA.jks")
 def keystorePassword = project.hasProperty("PIXEL_KEYSTORE_PASS") ? project.PIXEL_KEYSTORE_PASS : "Kdsmedia@123"
-def keyAliasName = project.hasProperty("PIXEL_KEY_ALIAS") ? project.PIXEL_KEY_ALIAS : "pixeldungeon"
+def keyAliasName = project.hasProperty("PIXEL_KEY_ALIAS") ? project.PIXEL_KEY_ALIAS : "kdsmedia"
 def keyPasswordVal = project.hasProperty("PIXEL_KEY_PASS") ? project.PIXEL_KEY_PASS : "Kdsmedia@123"
 
 android {
     namespace "com.altomedia.pixeldungeon"
-    compileSdk 35
+    compileSdk 37
 
     defaultConfig {
         applicationId "com.altomedia.pixeldungeon"
         minSdk 21
-        targetSdk 35
+        targetSdk 37
     }
 
     signingConfigs {
