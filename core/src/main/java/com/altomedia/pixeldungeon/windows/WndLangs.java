@@ -118,7 +118,7 @@ public class WndLangs extends Window {
 
     //language info layout.
     RenderedText title = PixelScene.renderText(Messages.titleCase(currLang
-            .nativeName()), 9);
+            .nativeName()), PixelScene.FONT_SIZE_TITLE);
     title.x = textLeft + (textWidth - title.width()) / 2f;
     title.y = 0;
     title.hardlight(TITLE_COLOR);

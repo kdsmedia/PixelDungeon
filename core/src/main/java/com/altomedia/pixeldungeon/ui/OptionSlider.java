@@ -95,7 +95,7 @@ public abstract class OptionSlider extends Component {
     add(BG = Chrome.get(Chrome.Type.BUTTON));
     BG.alpha(0.5f);
 
-    add(title = PixelScene.renderText(PixelScene.FONT_SIZE_TITLE));
+    add(title = PixelScene.renderText(PixelScene.FONT_SIZE_BODY));
     add(this.minTxt = PixelScene.renderText(PixelScene.FONT_SIZE_SMALL));
     add(this.maxTxt = PixelScene.renderText(PixelScene.FONT_SIZE_SMALL));
 
@@ -149,6 +149,15 @@ public abstract class OptionSlider extends Component {
 
   @Override
   protected void layout() {
+    // Fit the title so long Indonesian labels never overflow the slider
+    // width and overlap the min/max text or the slider node.
+    title.scale.set(1f, 1f);
+    float maxTitleWidth = Math.max(1f, width - 4f);
+    if (title.width() > maxTitleWidth && title.width() > 0) {
+      float s = Math.max(0.45f, maxTitleWidth / title.width());
+      title.scale.set(s, s);
+    }
+
     title.x = x + (width - title.width()) / 2;
     title.y = y + 2;
     PixelScene.align(title);

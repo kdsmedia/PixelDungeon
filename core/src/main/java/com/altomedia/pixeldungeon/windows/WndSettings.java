@@ -209,7 +209,7 @@ public class WndSettings extends WndTabbed {
       super();
 
       RenderedText barDesc = PixelScene.renderText(Messages.get(this, "mode")
-              , 9);
+              , PixelScene.FONT_SIZE_TITLE);
       barDesc.x = (WIDTH - barDesc.width()) / 2;
       PixelScene.align(barDesc);
       add(barDesc);
@@ -221,7 +221,7 @@ public class WndSettings extends WndTabbed {
           Toolbar.updateLayout();
         }
       };
-      btnSplit.setRect(1, barDesc.y + barDesc.baseLine() + GAP_TINY, 36, 16);
+      btnSplit.setRect(1, barDesc.y + barDesc.baseLine() + GAP_TINY, 36, BTN_HEIGHT);
       add(btnSplit);
 
       RedButton btnGrouped = new RedButton(Messages.get(this, "group")) {
@@ -231,8 +231,7 @@ public class WndSettings extends WndTabbed {
           Toolbar.updateLayout();
         }
       };
-      btnGrouped.setRect(btnSplit.right() + 1, barDesc.y + barDesc.baseLine()
-              + GAP_TINY, 36, 16);
+      btnGrouped.setRect(btnSplit.right() + 1, btnSplit.top(), 36, BTN_HEIGHT);
       add(btnGrouped);
       btnGrouped.enable(false);
 
@@ -243,8 +242,7 @@ public class WndSettings extends WndTabbed {
           Toolbar.updateLayout();
         }
       };
-      btnCentered.setRect(btnGrouped.right() + 1, barDesc.y + barDesc
-              .baseLine() + GAP_TINY, 36, 16);
+      btnCentered.setRect(btnGrouped.right() + 1, btnSplit.top(), 36, BTN_HEIGHT);
       add(btnCentered);
       btnCentered.enable(false);
 

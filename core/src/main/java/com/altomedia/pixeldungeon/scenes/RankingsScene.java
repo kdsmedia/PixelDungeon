@@ -112,7 +112,7 @@ public class RankingsScene extends PixelScene {
         add(label);
 
         RenderedText won = renderText(Integer.toString(Rankings.INSTANCE
-                .wonNumber), 8);
+                .wonNumber), FONT_SIZE_TITLE);
         won.hardlight(Window.SHPX_COLOR);
         add(won);
 

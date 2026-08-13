@@ -214,6 +214,15 @@ public class WndTabbed extends Window {
     protected void layout() {
       super.layout();
 
+      // Fit the label so long Indonesian tab names never overflow into the
+      // neighbouring tab.
+      btLabel.scale.set(1f, 1f);
+      float maxLabelWidth = Math.max(1f, width - 4f);
+      if (btLabel.width() > maxLabelWidth && btLabel.width() > 0) {
+        float s = Math.max(0.45f, maxLabelWidth / btLabel.width());
+        btLabel.scale.set(s, s);
+      }
+
       btLabel.x = x + (width - btLabel.width()) / 2;
       btLabel.y = y + (height - btLabel.baseLine()) / 2 - 1;
       if (!selected) {

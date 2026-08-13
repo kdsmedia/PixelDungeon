@@ -140,7 +140,7 @@ public class WndBag extends WndTabbed {
     int slotsHeight = SLOT_SIZE * nRows + SLOT_MARGIN * (nRows - 1);
 
     RenderedText txtTitle = PixelScene.renderText(title != null ? title :
-            Messages.titleCase(bag.name()), 9);
+            Messages.titleCase(bag.name()), PixelScene.FONT_SIZE_TITLE);
     txtTitle.hardlight(TITLE_COLOR);
     txtTitle.x = (int) (slotsWidth - txtTitle.width()) / 2;
     txtTitle.y = (int) (TITLE_HEIGHT - txtTitle.height()) / 2;

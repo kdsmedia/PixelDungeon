@@ -64,12 +64,15 @@ public class RedButton extends Button {
     bg.y = y;
     bg.size(width, height);
 
-    // Fit label inside the button: shrink font scale if the text is wider
-    // than the available width so it never overflows and overlaps siblings.
+    // Fit label inside the button: shrink font scale so the text never
+    // overflows the available width and overlaps siblings/buttons. Floor at
+    // 0.45 so long Indonesian labels (e.g. "Kelompok") stay readable yet fit
+    // narrow buttons.
     text.scale.set(1f, 1f);
-    float maxTextWidth = Math.max(1f, width - 4f);
+    float iconSpace = (icon != null) ? icon.width() + 4f : 0f;
+    float maxTextWidth = Math.max(1f, width - 4f - iconSpace);
     if (text.width() > maxTextWidth && text.width() > 0) {
-      float s = Math.max(0.5f, maxTextWidth / text.width());
+      float s = Math.max(0.45f, maxTextWidth / text.width());
       text.scale.set(s, s);
     }
 
